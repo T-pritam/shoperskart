@@ -31,7 +31,7 @@ export default function OrderDetails({
 
   const router = useRouter()
   const cookies = new Cookies()
-  const [OrderProduct,setOrderProducts] = useState<Products[]>([])
+  const [OrderProduct,setOrderProducts] = useState<Products>([])
   const [products,setProducts] = useState<any[]>([])
 
   useEffect(() => {
