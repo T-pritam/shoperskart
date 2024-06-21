@@ -14,9 +14,33 @@ export default function RateProduct({params}:
     }}
 )
 {
+
+    interface Products{
+        id: number;
+        thumbnail: string;
+        _id : string;
+        price : number;
+        discountPercentage: number;
+        title : string;
+        brand : {
+            name : string;
+        };
+
+      }
+
     const router = useRouter()
     const cookies = new Cookies()
-    const [reviewProduct,setReviewProduct] = useState<unknown[]>([])
+    const [reviewProduct,setReviewProduct] = useState<Products>({
+        id: 0,
+        thumbnail: "",
+        _id : "",
+        price : 0,
+        discountPercentage: 0,
+        title : "",
+        brand : {
+            name : "",
+        },
+    })
     const [review,setReview] = useState<unknown[]>([])
     const [reviewText,setReviewText] = useState("")
     const [rating,setRating] = useState(0)
