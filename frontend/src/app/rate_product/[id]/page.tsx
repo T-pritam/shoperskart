@@ -48,32 +48,34 @@ export default function RateProduct({params}:
     },[])
 
     function setRating2(getrating:any){
-        var a = document.getElementsByClassName('2')
-        for (let i = 0; i < a.length; i++) {
-            if(i < getrating){
-                a.item(i).style.color = "#ffe11b"
-            }
-            else{
-                a.item(i).style.color = "#ddd"
-            }  
-         }
-         switch(getrating){
-            case 1:
-                setRatingType("Very Bad")
-                break;
-            case 2:
-                setRatingType("Bad")
-                break;
-            case 3:
-                setRatingType("Good")
-                break;
-            case 4:
-                setRatingType("Very Good")
-                break;
-            case 5:
-                setRatingType("Excellent")
-                break;
-         }                  
+        var a = document.getElementsByClassName('2') as HTMLCollectionOf<HTMLElement>
+        if(a!=null){
+            for (let i = 0; i < a.length; i++) {
+                if(i < getrating){
+                    a.item(i).style.color = "#ffe11b"
+                }
+                else{
+                    a.item(i).style.color = "#ddd"
+                }  
+             }
+             switch(getrating){
+                case 1:
+                    setRatingType("Very Bad")
+                    break;
+                case 2:
+                    setRatingType("Bad")
+                    break;
+                case 3:
+                    setRatingType("Good")
+                    break;
+                case 4:
+                    setRatingType("Very Good")
+                    break;
+                case 5:
+                    setRatingType("Excellent")
+                    break;
+             }
+        }                  
     }
 
     return <div>
