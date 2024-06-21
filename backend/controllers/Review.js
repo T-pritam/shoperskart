@@ -16,6 +16,7 @@ exports.create = async (req, res) => {
 exports.getByProductId = async (req, res) => {
     try {
         const { id } = req.params
+        console.log("id",id)
         var count = 0
         var totalRating = 0
         const ratings = new Array(8).fill(0);

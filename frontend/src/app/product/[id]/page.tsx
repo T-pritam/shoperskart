@@ -34,7 +34,7 @@ export default async function Product({params}:
     return <>
         <div>
         <NavScrollExample />
-        <MyCarousel product = {product} img = {img} />
+        <MyCarousel product = {product} img = {img}  id = {params.id}/>
         </div>
     
     </>

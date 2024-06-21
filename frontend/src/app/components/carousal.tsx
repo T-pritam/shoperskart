@@ -23,12 +23,12 @@ const MyCarousel = (props : any) => {
 
   useEffect(() => {
     const getcartprod =async() =>{
-      const data = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`review/product/${props.product._id}`)
+      const data = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`review/product/${props.id}`)
         setA(data.data.ratings[0])        
         setB(data.data.totalDocs)        
         setC(data.data.count) 
       if(cookies.get("access_token")){
-        const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`cart/user/${cookies.get("access_token")}/${props.product._id}`)   
+        const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`cart/user/${cookies.get("access_token")}/${props.id}`)   
 
         setAuth(true)
         if(a.data.count != 0){
@@ -40,10 +40,10 @@ const MyCarousel = (props : any) => {
   },[])
 
   useEffect(() => {
-    const carousel = document.querySelector('.carousel-images') as HTMLInputElement;
+const carousel = document.querySelector('.carousel-images') as HTMLInputElement;
 const images = document.querySelectorAll('.carousel-image');    
-const prevButton = document.querySelector('.carousel-button.prev') ;
-const nextButton = document.querySelector('.carousel-button.next');
+const prevButton = document.querySelector('.carousel-button.prevv') as HTMLInputElement;
+const nextButton = document.querySelector('.carousel-button.nextt') as HTMLInputElement;
 let currentIndex = 0;
 
 
@@ -55,20 +55,17 @@ function updateCarousel() {
 
 prevButton?.addEventListener('click', () => {
     currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-    
     updateCarousel();
 });
 
 nextButton?.addEventListener('click', () => {
     currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-
     updateCarousel();
 });
   })
 
   const handleImageClick = (imageSrc:any) => {
     setCurrentImage(imageSrc);
-
     setIsModalOpen(true);
   };
   
@@ -89,7 +86,7 @@ return <div style={{margin : "50px 0 0 0"}}>
   <div className='containerr'>
         <div className='leftt'>
             <div className="carousel">
-              <button className="carousel-button prev">‹</button>
+              <button className="carousel-button prevv">‹</button>
               <div className="carousel-images">
               {
                 props.img.map((prod:any) => (
@@ -97,7 +94,7 @@ return <div style={{margin : "50px 0 0 0"}}>
                 ))
               }
                 </div>
-                  <button className="carousel-button next">›</button>
+                  <button className="carousel-button nextt">›</button>
             </div>
             
 
@@ -158,7 +155,7 @@ return <div style={{margin : "50px 0 0 0"}}>
 
            <p>Aliquam blandit porta porttitor. Maecenas vel cursus ex. In at velit eu tellus fringilla rutrum. Integer quis leo risus. Integer vestibulum, mauris nec elementum vestibulum, ipsum ante faucibus leo, in congue lacus dui sed dolor. Curabitur ornare at mi quis tempor. Curabitur pulvinar urna sapien, eget malesuada elit placerat id. Integer luctus mauris quis efficitur vestibulum. Pellentesque vitae dolor non dolor consectetur semper.</p>
            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu eros non tortor malesuada tempor. In vel lorem elit. Vestibulum a blandit neque. Vestibulum interdum eros euismod pulvinar elementum. Vivamus tempus sodales justo ac suscipit. Donec quis est et enim convallis lacinia at vitae nisl. Nam suscipit urna eu egestas fermentum. Phasellus malesuada consequat libero, laoreet ultrices nunc pellentesque vel. Nam pulvinar luctus convallis. Curabitur diam lectus, aliquam sed faucibus vitae, euismod eget nulla.</p>
-       <ReviewProduct id={props.product._id}/>
+       <ReviewProduct id={props.id} />
        </div>
         </div>
     </div>

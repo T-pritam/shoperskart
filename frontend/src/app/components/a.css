@@ -244,14 +244,14 @@
   cursor: pointer;
   font-size: 18px;
   border-radius: 50%;
-  z-index: 0.5;
+  z-index: 1;
 }
 
-.carousel-button.prev {
+.carousel-button.prevv {
   left: 10px;
 }
 
-.carousel-button.next {
+.carousel-button.nextt {
   right: 10px;
 }
 
