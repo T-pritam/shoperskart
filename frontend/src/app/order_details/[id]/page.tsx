@@ -23,6 +23,7 @@ export default function OrderDetails({
       state : string;
       phoneNumber : string;
       postalCode : string;
+      type : string;
     };
     paymentMode : string;
     status: string;
@@ -31,7 +32,21 @@ export default function OrderDetails({
 
   const router = useRouter()
   const cookies = new Cookies()
-  const [OrderProduct,setOrderProducts] = useState<Products>([])
+  const [OrderProduct,setOrderProducts] = useState<Products>({
+    id: 0,
+    address: {
+      name : "",
+      street : "",
+      city : "",
+      state : "",
+      phoneNumber : "",
+      postalCode : "",
+      type : "",
+    },
+    paymentMode : "",
+    status: "",
+    total: 0,
+  })
   const [products,setProducts] = useState<any[]>([])
 
   useEffect(() => {
