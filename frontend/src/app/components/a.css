@@ -1,0 +1,320 @@
+.dropbtn {
+  background-color: darkseagreen;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 80px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 4px ;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+/* 
+.dropdown:hover .dropbtn {
+  
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.imgofcards{
+  max-height: 30px;
+  cursor: pointer;
+}
+.logo{
+  width: 113px;
+  cursor: pointer;
+  margin-left:7vw;
+}
+
+.search-barr{
+  position:relative;
+}
+
+.form-controll{
+    display: block;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.dib{
+  display: inline-block;
+}
+.cart{
+  margin-left:6vw;
+}
+.user{
+  margin-left:2vw;
+}
+
+.aaa{
+  width: 35vw;
+  margin-left:12vw;
+}
+
+.searchResult{
+  max-height: 30vw;
+  z-index: 10;
+  position: fixed;
+  left: 18vw;
+  border: 1px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.login{
+  margin-left: 7vw;
+  display: inline-block;
+}
+
+.logo-login{
+  display: none;
+  width: 70px;
+}
+
+.logindiv{
+  display: inline-block;
+}
+
+@media (max-width: 999px),(max-width: 770px){
+  .dib{
+    display: block;
+  }
+  .user{
+    margin-left: 6vw;
+  }
+
+}
+
+@media (max-width: 768px),(max-width: 501px){
+  .search-barr{
+    margin-left: -4vw;
+    display: inline-block;
+    width: 75vw;
+    position: absolute;
+    top: 7px;
+  }
+  .cart{
+    margin-left: 50vw;
+  }
+  .user{
+    margin-left:0vw;
+  }
+  .searchResult{
+    left: -9vw;
+    width: 90vw;
+    max-height: 40vh;
+    z-index: 10;
+  }
+  .logo{
+    width: 100px;
+    display: block;
+    margin-left: 0;
+  }
+  .cart{
+    margin-left: 0;
+  }
+  .login{
+    margin-left: 0vw;
+    display: block;
+  }
+  .logo-login{
+    display: block;
+  }
+  .dib{
+    display: block;
+  }
+  .logindiv{
+    display: block;
+  }
+}
+
+
+
+
+.btnsdiv{
+  margin: 90px 0 0 0;
+}
+
+.btns{
+  width: 170px;
+  height: 50px;
+  margin-right: 1vw;
+}
+
+.containerr{
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+}
+
+.leftt {
+  position: fixed;
+  width: 40vw;
+  height: 90vh;
+  margin-left: 1vw;
+  background-color: #f4f4f4;
+  padding: 50px 20px 20px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.rightt {
+  flex: 1;
+  background-color: #f4f4f4;
+  padding: 20px;
+  margin-left: 42vw;
+  box-sizing: border-box;
+}
+.carousel {
+  position: relative;
+  width: 80%;
+  max-width: 350px;
+  overflow: hidden;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-image {
+  min-width: 100%;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 50%;
+  z-index: 0.5;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+.modall {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.653);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: hidden;
+}
+
+.closeButton {
+    position: absolute;
+    top: -9px;
+    right: 3px;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.fullImage {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px
+}
+
+
+
+@media (max-width: 768px) {
+  .leftt, .rightt {
+      flex: 0 0 100%;
+      height: auto;
+      position: static;
+  }
+  .rightt{
+    margin-left: 0;
+  }
+  .leftt{
+    padding: 20px 20px 20px 20px;
+  }
+  .carousel-image{
+    width: 90vw;
+    height: 50vw;
+  }
+  .btnsdiv{
+    margin: 20px 0 0 0;
+  }
+  .btns{
+    margin-left: 10px;
+    width: 140px;
+  }
+}

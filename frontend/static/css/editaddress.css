@@ -1,0 +1,57 @@
+
+.editcontainer{
+    width: 550px;
+    height: 320px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px 20px 10px;
+    border-radius: 10px;
+    margin: 65px 10px 10px 60vh;
+}
+.addname,.addstreet{
+    width: 430px;
+    max-width: 100%;
+    margin: 1vw 0 0 0;
+}
+.addstreet{
+    margin-bottom: 1vw;
+}
+.addall{
+    width: 200px;
+}
+
+.addselect{
+    width: 200px;
+    height: 30px;
+}
+.editaddbtn{
+    margin: 0 1vw 0 0;
+}
+
+@media (max-width : 600px){
+    .addouter{
+        margin: 0;
+    }
+    .editcontainer{
+        width: 97vw;
+        height: 40vh;
+        margin: 10vh 0 0 1.8vw;
+    }
+    .addname,.addstreet{
+        width: 85vw;
+    }
+    .addall{
+        width: 40vw;
+    }
+    .addselect{
+        width: 40vw;
+    }
+    .addsavebtn{
+        margin-top: 1.3vh;
+    }
+    .editaddbtn{
+        margin-top:3vh;
+        margin-left: 5px;
+        margin-right: 0;
+    }
+}

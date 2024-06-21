@@ -1,0 +1,130 @@
+.outerdiv{
+    width: 1100px;
+    height: 200px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    margin: 0 0 20px 80px;
+}
+.orderimgdiv{
+    width: 280px;
+    height: 140px;
+    display: inline-block;
+    text-align: center;
+}
+.orderimg{
+    max-width: 120px;
+}
+.ordertitle{
+    font-size: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 300px;
+    margin-top: 10px;
+}
+.seconddiv,.thirddiv{
+    margin-top: 10px;
+    width: 250px;
+    height: 160px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.fourthdiv{
+    width: 250px;
+    height: 140px;
+    text-align: center;
+}
+.ordertitl{
+    display: none;
+}
+.responsivediv,.responsivedivv,.responsivedivvv,.orderstatus{
+    display: none;
+}
+.price{
+    display: inline-block;;
+}
+
+@media(max-width: 600px) {
+    .outerdiv{
+        display: block;
+        width: 95vw;
+        margin: 2vw;
+        height: 20vh;
+        padding: 0;
+    }
+    .orderimgdiv{
+        width: 35vw;
+        height: 24vh;
+        position: relative;
+        text-align: left;
+
+    }
+    .orderimg{
+        width: 100%;
+        height: 70%;
+        position: relative;
+        top: 3vw;
+        left: 2vh;
+        border-radius: 10px;
+    }
+    .ordertitl{
+        display: inline-block;
+        position: relative;
+        font-size: 16px;
+        width: 50vw;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        left : 5vw;
+        bottom: 6vw;
+
+    }
+    .ordertitle,.price{
+        display: none;
+    }
+    .seconddiv{
+        display: none;
+    }
+    .responsivedivv,.responsivediv,.responsivedivvv,.orderstatus{
+        display: inline-block;
+        position: relative;
+        left: 30vw;
+        font-size: 16px;
+        top: -20vh;
+        width: 60vw;
+
+    }
+    .responsivediv{
+        display: block;
+        left: 40vw;
+        margin-top: 1vh;
+    }
+    .responsivedivv{
+        display: block;
+        left: 40vw;
+        margin-top: 2vh;
+        font-weight: 400;
+    }
+    .responsivedivvv{
+        display: block;
+        left: 40vw;
+        margin-top: 6vh;
+        font-weight: 400;
+    }
+    .orderstatus{
+        display: block;
+        left: 40vw;
+        margin-top: 2vh;
+    }
+    .statustit,.statusval{
+        display: inline-block;
+    }
+    .thirddiv,.fourthdiv{
+        display: none;
+    }
+
+}

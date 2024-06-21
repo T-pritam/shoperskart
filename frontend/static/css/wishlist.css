@@ -1,0 +1,74 @@
+.cardd{
+    margin : 0 0 2vh 2vh;
+    width: 18vw;
+    display: inline-block;
+    border :0.5px solid #d2d1d1;
+    padding : 5px;
+    border-radius: 10px;
+}
+
+.imgimgg{
+    width: 18vw;
+    cursor: pointer;
+    height: 16vw;
+    margin-top: 1vh;
+    border-radius: 10px;
+}
+
+.brandtext{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 15rem;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-around;
+    padding: 1vh 1vh 2vh 1vh;
+}
+.buttonss{
+    display: none;
+}
+.titletext{
+    font-size: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 14rem;
+}
+
+@media (max-width : 900px){
+    .cardd{
+        width: 47vw;
+        margin: 5px;
+        padding-bottom: 10px;
+    }
+    .imgimgg{
+        height: 20vh;
+    }
+    .buttons{
+        display: none;
+    }
+    .buttonss{
+        display: flex;
+        justify-content: space-around;
+    }
+    .btnn{
+        border : 0;
+        margin-left: 2px;
+        background-color: #3c3b3b;
+        color: white;
+        display: inline-block;
+        height: 35px;
+        font-size: 14.5px;
+        border-radius: 5px;
+    }
+    .titletext{
+        font-size: 18px;
+        font-weight: 500;
+        width:10rem
+    }
+
+}

@@ -1,0 +1,111 @@
+.addouter{
+    margin-left: 60vh;
+}
+.addcontainer{
+    width: 550px;
+    height: 320px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px 20px 10px;
+    border-radius: 10px;
+    margin: 65px 10px 10px 10px;
+}
+.addname,.addstreet{
+    width: 430px;
+    max-width: 100%;
+    margin: 1vw 0 0 0;
+}
+.addstreet{
+    margin-bottom: 1vw;
+}
+.addall{
+    width: 200px;
+}
+
+.addselect{
+    width: 200px;
+    height: 30px;
+}
+.addalldis{
+    display: inline-block;
+}
+.addallcontainer{
+    width: 30vw;
+    height: 32vh;
+    border: 1px solid black;
+    margin: 1.3vw;
+    border-radius: 10px;
+    padding: 1vw 1vw 1vw 2vw;
+}
+.addalltype{
+    width: 5vw;
+    height: 4.5vh;
+    padding-left: 2vh;
+    background-color: #f0f0f0;
+    color: #878787;
+}
+.addallbtn{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+}
+.addallbtnedit,.addallbtndel{
+    background-color: rgb(169, 174, 172);
+    padding : 6px 12px 6px 12px;
+    border: 0;
+    border-radius: 5px;
+}
+
+@media (max-width : 600px){
+    .addouter{
+        margin: 0;
+    }
+    .addcontainer{
+        width: 95vw;
+        height: 38vh;
+    }
+    .addname,.addstreet{
+        width: 85vw;
+    }
+    .addall{
+        width: 40vw;
+    }
+    .addselect{
+        width: 40vw;
+    }
+    .addsavebtn{
+        margin-top: 1.3vh;
+    }
+    .addalldis{
+        display: block;
+    }
+    .addallcontainer{
+        height: 24vh;
+        width: 96vw;
+        margin: 0 1.3vh 0 1.3vh;
+        border-radius: 0;
+        border: 0.6px solid #999;
+        padding: 2vh;
+    }
+    .addallh5{
+        font-size: 16px;
+        font-weight: 400;
+        margin-bottom: 0;
+    }
+    .addalltype{
+        width: 20vw;
+        height: 4vh;
+        padding: 0.5vh 0 0 2vh;
+    }
+    .addallbtn{
+        display: block;
+        margin : 1vh 0 1vh 0;
+    }
+    .addallbtndel{
+        margin-left: 3vh;
+    }
+    .addallbtnedit,.addallbtndel{
+        background-color: rgb(169, 174, 172);
+        padding : 6px 12px 6px 12px;
+    }
+}

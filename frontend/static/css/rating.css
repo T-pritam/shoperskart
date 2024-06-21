@@ -1,0 +1,123 @@
+.outerbox{
+    width: 800px;
+    height: 530px;
+    margin: auto;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: rgba(99, 99, 99, 0.4) 0px 2px 8px 0px;
+    border-radius: 20px;
+    padding: 20px;
+}
+.displayflex{
+    display: flex;
+    justify-content: space-around;
+}
+.flexrating{
+    width: 780px;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+.submitbtn{
+    padding: 0.7vw 1.3vw 0.7vw;
+    border: none;
+    background-color: #141313b3;
+    color: white;
+    border-radius: 8px;
+}
+.pagetit{
+    text-align: center;
+}
+.rateimg{
+    width: 300px;
+    height: 200px;
+    cursor: pointer;
+    object-fit: contain;
+}
+.ratetit{
+    font-size: 30px;
+    margin-bottom: 0;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 350px;
+}
+.ratebrand{
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+.rateprice{
+    font-size: 20px;
+}
+.ratingtype{
+    text-align: center;
+    margin-left: 20px;
+    margin: auto;
+    font-size: 23px;
+}
+.textarearat{
+    width: 300px;
+    resize: none;
+    font-size: 12pt;
+}
+
+@media (max-width:600px){
+    .outerbox{
+        width: 96vw;
+        height: 80vh;
+        margin: 9vh 1vh 0 1vh;
+        padding: 10px 20px 10px;
+    }
+    .displayflex{
+        display: block;
+    }
+    .flexrating{
+        display: inline-block;
+        width: 90vw;
+        height: 10vh;
+    }
+    .pagetit{
+        display: none;
+    }
+    .rateimg{
+        width: 85vw;
+        height: 25vh;
+        padding: 5px;
+    }
+    .ratetit{
+        font-size: 21px;
+        width: 80vw;
+    }
+    .ratebrand{
+        font-size: 18px;
+        font-weight: 300;
+        margin-bottom: 1vh;
+    }
+    .rateprice{
+        font-size: 19px;
+        margin-bottom: 8px;
+    }
+    .r2{
+        width: 10vw;
+    }
+    .ratingtype{
+        text-align: left;
+        font-size: 23px;
+        display: inline-block;
+        margin: 1vh 0 0 2vw;
+    }
+    .dibb{
+        display: flex;
+        justify-content: flex-start;
+        width: 88vw;
+        height: 10vh;
+    }
+    .textarearat{
+        width: 85vw;
+    }
+    .submitbtn{
+        margin-top: 1vh;
+        padding: 2vw 4vw 2vw;
+    }
+}

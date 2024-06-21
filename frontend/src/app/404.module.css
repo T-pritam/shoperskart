@@ -1,0 +1,36 @@
+/* styles/404.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .description {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  
+  .homeLink {
+    font-size: 1rem;
+    color: #0070f3;
+    text-decoration: none;
+    border: 1px solid #0070f3;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .homeLink:hover {
+    background-color: #0070f3;
+    color: #ffffff;
+  }
+  

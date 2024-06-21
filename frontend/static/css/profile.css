@@ -1,0 +1,47 @@
+.maindiv{
+    margin: 6vw 1vw 1vw 1vw;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.eachbox{
+    width: 30vw;
+    height: 40vh;
+    border: 2px solid #666;
+    border-radius: 20px;
+    padding: 1vw;
+    text-align: center;
+}
+.EmailInput,.phoneDetails{
+    width: 20vw;
+    border-radius:5px;
+    margin: 0 15px 0;
+}
+
+.profileInfo{
+    width: 11vw;
+    border-radius:5px;
+    margin: 0 1vw 0;
+}
+
+
+@media (max-width : 500px) {
+    .maindiv{
+        flex-direction: column;
+        margin: 9vh 1vw 1vw 1vw;
+    }
+    .eachbox{
+        width: 95vw;
+        margin-bottom: 10px;
+        height: 30vh;
+    }
+
+    .EmailInput,.phoneDetails{
+        width: 60vw
+    } 
+    .profileInfo{
+        width: 30vw;
+        margin-left: 2vw; 
+    }
+     
+}
