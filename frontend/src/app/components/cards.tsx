@@ -38,7 +38,7 @@ return <div>
         <div>
           <p className="card-title diba" style={{fontSize:"21px",fontWeight:"500",marginTop:"2px"}}>&#8377;{new Intl.NumberFormat('en-IN').format(Math.floor(prod.price-(prod.price*prod.discountPercentage)/100))}</p>
           <p className="card-title dibc" style={{fontSize:"16px",fontWeight:"500",marginTop:"2px",textDecorationLine:"line-through",marginBottom:"0"}}>&#8377;{new Intl.NumberFormat('en-IN').format(prod.price)}</p>
-          <p className="card-title dibb" style={{fontSize:"16px",fontWeight:"500",marginTop:"2px",color:"darkseagreen",marginBottom:"0"}}>{prod.discountPercentage }% off</p>
+          <p className="card-title dibp" style={{fontSize:"16px",fontWeight:"500",marginTop:"2px",color:"darkseagreen",marginBottom:"0"}}>{prod.discountPercentage }% off</p>
         </div>
           <div className='addtocart'>
             <Addtocart product = {prod} />

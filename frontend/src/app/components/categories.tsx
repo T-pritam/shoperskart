@@ -24,6 +24,7 @@ export default function Categories(){
 
          const getCategories = async() => {
             const data = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"categories/")
+            console.log("category" , data.data)
             setCategories(data.data)
         }
 
