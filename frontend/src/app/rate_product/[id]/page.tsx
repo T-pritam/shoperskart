@@ -72,14 +72,14 @@ export default function RateProduct({params}:
     },[])
 
     function setRating2(getrating:any){
-        var a = document.getElementsByClassName('2') as HTMLCollectionOf<HTMLElement>
+        var a = document.getElementsByClassName('2')
         if(a!=null){
             for (let i = 0; i < a.length; i++) {
                 if(i < getrating){
-                    a.item(i).style.color = "#ffe11b"
+                    (a[i] as HTMLElement).style.color = "#ffe11b"
                 }
                 else{
-                    a.item(i).style.color = "#ddd"
+                    (a[i] as HTMLElement).style.color = "#ddd"
                 }  
              }
              switch(getrating){
