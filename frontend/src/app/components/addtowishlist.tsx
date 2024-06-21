@@ -15,7 +15,7 @@ export default function Wishlist(props:any){
     const [wishlistProd,setwishlistProd] = useState<unknown[]>([])
     const [count,setCount] = useState(0)
 
-    const ref = useRef(null)
+    const ref = useRef<HTMLImageElement>(null);
 
     const handleClick = useCallback(async () => {
         const cartProduct = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"wishlist/user/list/"+cookies.get("access_token"))
@@ -33,7 +33,9 @@ export default function Wishlist(props:any){
 
     async function addtowish(){
         try{
-            ref.current.src = 'https://as2.ftcdn.net/v2/jpg/07/43/46/69/1000_F_743466913_L1UF39XRnPbNDB2z5Pt7rh2DY12ZxNJq.jpg'
+            if(ref.current){
+                ref.current.src = 'https://as2.ftcdn.net/v2/jpg/07/43/46/69/1000_F_743466913_L1UF39XRnPbNDB2z5Pt7rh2DY12ZxNJq.jpg'
+            }
             const a = await axios.post(process.env.NEXT_PUBLIC_BASE_URL+"wishlist/",{
                 user : cookies.get("access_token"),
                 product : props.product._id,
@@ -56,10 +58,14 @@ if (auth){
        return  <div>
         <img className='imgofcards' id="imgg" onMouseOver={() => {
             var a = document.getElementById('imgg')
-            ref.current.style.width = "33px"
+            if(ref.current){
+                ref.current.style.width = "33px"
+            }
         }}  onMouseOut={() => {
             var a = document.getElementById('imgg')
-            ref.current.style.width = "28px"
+            if(ref.current){
+                ref.current.style.width = "28px"
+            }
         }}
         ref={ref} src="https://as2.ftcdn.net/v2/jpg/06/24/61/69/1000_F_624616942_pjDJQzVBgeusYxAUEGQMm7gUhibI9KvH.webp" alt="" style={{cursor:"pointer",width:'28px'}} onClick={addtowish} /></div>
     }
