@@ -32,14 +32,27 @@ export default function OrderDetails({
 
   const router = useRouter()
   const cookies = new Cookies()
-  const [OrderProduct,setOrderProducts] = useState<Products | null>(null)
+  const [OrderProduct,setOrderProducts] = useState<Products>({
+    id: 0,
+    address: {
+      name : "",
+      street : "",
+      city : "",
+      state : "",
+      phoneNumber : "",
+      postalCode : "",
+      type : "",
+    },
+    paymentMode : "",
+    status: "",
+    total: 0,
+  })
   const [products,setProducts] = useState<any[]>([])
 
   useEffect(() => {
     const getOrderDetails = async () => {
       const orderDetails = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"orders/"+params.id)
       setOrderProducts(orderDetails.data)
-      console.log("Order_details",orderDetails.data)
       setProducts(orderDetails.data.item)
     }
 
