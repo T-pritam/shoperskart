@@ -1,4 +1,4 @@
-.cardd{
+.carddd{
     margin : 0 0 2vh 2vh;
     width: 18vw;
     display: inline-block;
@@ -40,7 +40,7 @@
 }
 
 @media (max-width : 900px){
-    .cardd{
+    .carddd{
         width: 47vw;
         margin: 5px;
         padding-bottom: 10px;

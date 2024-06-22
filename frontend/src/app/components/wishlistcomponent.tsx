@@ -51,7 +51,7 @@ export default function WishlistComponent(props:any){
     return <>
 
 
-<div className="cardd">
+<div className="carddd">
   <img src={props.product.product.thumbnail} className="card-img-top imgimgg" onClick={() => router.push('/product/'+props.product.product._id)} alt="..." /> 
   <div className="card-body">
     <h5 className="card-title titletext">{props.product.product.title}</h5>

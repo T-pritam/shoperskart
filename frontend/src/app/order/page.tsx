@@ -8,9 +8,27 @@ import OrderPage from "../components/orderpage"
 import "../../../static/css/order.css"
 
 export default function Order(){
+
+    interface Products {
+        _id: string;
+        address: {
+          name : string;
+          street : string;
+          city : string;
+          state : string;
+          phoneNumber : string;
+          postalCode : string;
+          type : string;
+        };
+        paymentMode : string;
+        status: string;
+        total: number;
+        phoneNumber: number;
+      }
+
     const cookies = new Cookies()
     const router = useRouter()
-    const [orderitem,setOrderItem] = useState<unknown[]>([])
+    const [orderitem,setOrderItem] = useState<Products[]>([])
     const [img,setImg] = useState("")
     
 
