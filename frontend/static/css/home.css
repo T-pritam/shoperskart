@@ -4,7 +4,7 @@
 }
 
 .cardd{
-    width: 18rem;
+    width: 14rem;
     margin:10px;
 
     padding: 7px;
@@ -16,44 +16,65 @@
     background-clip: border-box;
 }
 
+
 .image{
-    height: 14rem;
+    height: 12rem;
     cursor: pointer;
     margin-bottom: 8px;
 }
 
 .titletext{
-    font-size:20px;
-    font-weight:500;
+    font-size:16px;
+    font-weight:400;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 14rem;
+    width: 13rem;
 }
-
+.homecardrating{
+    font-size: 13px;
+    width:45px;
+    border-radius:6px;
+    padding:1px 1px 1px 8px;
+    color:white;
+    display:inline-block;
+}
 .addtocart{
     display: block;
 }
 
 .wishlisticon{
-    margin : 0;
+    position: absolute;
+    right: 5px;
+    top: 10px;
 }
 
 .divpricebtn{
-    display: flex;
-    justify-content: space-between;
+    display: block;
 }
 .diba{
     display: inline-block;
-}
-
-.dibp{
-    display: none;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 2px;
 }
 
 .dibc{
     display: inline-block;
+    margin-left: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 2px 0 0 6px;
+    text-decoration: line-through;
+}
+
+.dibp{
+    display: inline-block;
     margin-left: 7px;
+    font-weight: 500;
+    color: #388e3c;
+    font-size: 14px;
+    margin: 2px 0 0 5px;
 }
 .brandname{
     font-size:14px;
@@ -80,24 +101,22 @@
 
 @media (max-width: 500px){
     .cardd{
-        height: 18vh;
+        height: 16vh;
         flex-direction: row;
         width: 95vw;
         padding: 5px;
     }
     .image{
-        width: 20vh;
-        height: 15vh;
+        width: 13vh;
+        height: 13vh;
         margin-right: 17px;
     }
     .titletext{
-        width: 9rem;
-        font-size: 18px;
+        width: 14rem;
+        font-size: 16px;
     }
     .wishlisticon{
-        position: absolute;
-        top: 5px;
-        right: 2px;
+        display: none;
     }
     .addtocart{
         display: none;
@@ -111,6 +130,7 @@
     }
     .dibc{
         display: inline-block;
+        margin: 0;
     }
     .divpricebtn{
         display: block;

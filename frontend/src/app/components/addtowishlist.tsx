@@ -4,6 +4,7 @@ import { useRef } from "react"
 import Cookies from "universal-cookie"
 import { useState,useEffect, useCallback } from "react"
 import { useRouter } from "next/navigation"
+import { FaHeart } from "react-icons/fa6";
 import { IoHeartOutline } from "react-icons/io5";
 import { toast } from 'sonner'
 
@@ -59,15 +60,15 @@ if (auth){
         <img className='imgofcards' id="imgg" onMouseOver={() => {
             var a = document.getElementById('imgg')
             if(ref.current){
-                ref.current.style.width = "33px"
+                ref.current.style.width = "25px"
             }
         }}  onMouseOut={() => {
             var a = document.getElementById('imgg')
             if(ref.current){
-                ref.current.style.width = "28px"
+                ref.current.style.width = "20px"
             }
         }}
-        ref={ref} src="https://as2.ftcdn.net/v2/jpg/06/24/61/69/1000_F_624616942_pjDJQzVBgeusYxAUEGQMm7gUhibI9KvH.webp" alt="" style={{cursor:"pointer",width:'28px'}} onClick={addtowish} /></div>
+        ref={ref} alt="" style={{cursor:"pointer"}} onClick={addtowish} /><FaHeart size={'20px'} color="#c2c2c2" /></div>
     }
     
     

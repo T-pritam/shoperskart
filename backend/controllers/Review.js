@@ -8,7 +8,7 @@ exports.create = async (req, res) => {
         await created.save()
         res.status(201).json(created)
     } catch (error) {
-        console.log(error);
+        console.log(error);a
         return res.status(500).json({ message: 'Error posting review, please trying again later' })
     }
 }
