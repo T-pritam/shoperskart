@@ -17,19 +17,35 @@ const MyCarousel = (props : any) => {
   const [auth,setAuth] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState('');
-  const [a,setA] = useState(0)
-  const [b,setB] = useState(0)
-  const [c,setC] = useState(0)
+  const [reviews,setReviews] = useState<unknown[]>([])
+  const [total,setTotal] = useState(0)
+  const [totalRatings,setTotalRating] = useState(0)
+  const [rating1,setRating1] = useState(0)
+  const [rating2,setRating2] = useState(0)
+  const [rating3,setRating3] = useState(0)
+  const [rating4,setRating4] = useState(0)
+  const [rating5,setRating5] = useState(0)
+  const [ratingAvg,setRatingAvg] = useState(0)
+  const [largest,setLargest] = useState(0)
+  const [largestIndex,setLargestIndex] = useState(0)
+
 
   useEffect(() => {
     const getcartprod =async() =>{
       const data = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`review/product/${props.id}`)
-        setA(data.data.ratings[0])        
-        setB(data.data.totalDocs)        
-        setC(data.data.count) 
+        setReviews(data.data.result)
+        setTotal(data.data.totalDocs)
+        setTotalRating(data.data.count)
+        setRating1(data.data.ratings[1])
+        setRating2(data.data.ratings[2])
+        setRating3(data.data.ratings[3])
+        setRating4(data.data.ratings[4])
+        setRating5(data.data.ratings[5])
+        setRatingAvg(data.data.ratings[0])
+        setLargest(data.data.ratings[6])
+        setLargestIndex(data.data.ratings[7])
       if(cookies.get("access_token")){
         const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`cart/user/${cookies.get("access_token")}/${props.id}`)   
-
         setAuth(true)
         if(a.data.count != 0){
           setCart(true)
@@ -72,6 +88,7 @@ nextButton?.addEventListener('click', () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  
 
 
 return <div style={{margin : "50px 0 0 0"}}>
@@ -121,18 +138,19 @@ return <div style={{margin : "50px 0 0 0"}}>
         </div>
         <div className='rightt' >
         <h3>{props.product.title}</h3>
+        <h5 style={{fontWeight:"400"}}>{props.product.description}</h5>
        
        {
-         b == 0 ? <div></div> :
+         total == 0 ? <div></div> :
          <div>
        {
-         a <= 1 ?
-         <p className="mt-0 mb-0" style={{backgroundColor:"red",width:"50px",borderRadius:"6px",padding:"0 0 0 8px",color:"white",display:"inline-block"}}> {a.toFixed(1)}<IoStarSharp style={{marginBottom:"4px"}} size={"15px"}  color="white"/></p> 
-         : a <= 2 ?
-         <p className="mt-0 mb-0" style={{backgroundColor:"orange",width:"50px",borderRadius:"6px",padding:"0 0 0 8px",color:"white",display:"inline-block"}}> {a.toFixed(1)}<IoStarSharp style={{marginBottom:"4px"}} size={"15px"}  color="white"/></p> 
-         : <p className="mt-0 mb-0" style={{backgroundColor:"green",width:"50px",borderRadius:"6px",padding:"0 0 0 8px",color:"white",display:"inline-block"}}> {a.toFixed(1)}<IoStarSharp style={{marginBottom:"4px"}} size={"15px"}  color="white"/></p> 
+         ratingAvg <= 1 ?
+         <p className="mt-0 mb-0" style={{backgroundColor:"red",width:"50px",borderRadius:"6px",padding:"0 0 0 8px",color:"white",display:"inline-block"}}> {ratingAvg.toFixed(1)}<IoStarSharp style={{marginBottom:"4px"}} size={"15px"}  color="white"/></p> 
+         : ratingAvg <= 2 ?
+         <p className="mt-0 mb-0" style={{backgroundColor:"orange",width:"50px",borderRadius:"6px",padding:"0 0 0 8px",color:"white",display:"inline-block"}}> {ratingAvg.toFixed(1)}<IoStarSharp style={{marginBottom:"4px"}} size={"15px"}  color="white"/></p> 
+         : <p className="mt-0 mb-0" style={{backgroundColor:"green",width:"50px",borderRadius:"6px",padding:"0 0 0 8px",color:"white",display:"inline-block"}}> {ratingAvg.toFixed(1)}<IoStarSharp style={{marginBottom:"4px"}} size={"15px"}  color="white"/></p> 
        }
-       <p className="mt-0 mb-0" style={{display:"inline-block",marginLeft:"10px"}}>{b} Ratings & {b-c} Reviews</p>
+       <p className="mt-0 mb-0" style={{display:"inline-block",marginLeft:"10px"}}>{props.product.totalratings} Ratings & {props.product.totalreviews} Reviews</p>
 
        </div>
        }
@@ -147,6 +165,20 @@ return <div style={{margin : "50px 0 0 0"}}>
          <p><b>Bank Offer</b> 10% off up to ₹1250 on HDFC Bank Credit Card Min Txn Value: ₹7500</p>
        </div>
 
+       
+        <h6 style={{display:"inline-block"}}>Seller</h6><h6 style={{display:"inline-block",marginLeft:"50px"}}>SuperComNet</h6>
+        <div style={{marginLeft:"100px"}}>
+          <ul>
+            <li>{props.product.returnPolicy}</li>
+            <li>{props.product.shippingInformation}</li>
+            {
+              props.categories.name == 'Laptops' ||props.categories.name == 'Smartphones' ||props.categories.name == 'Watch' ?
+              <li>1 Year Warrenty</li> :
+              <div></div>
+            }
+          </ul>
+       </div>
+
        <div>
          <h5>Description </h5>
          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu eros non tortor malesuada tempor. In vel lorem elit. Vestibulum a blandit neque. Vestibulum interdum eros euismod pulvinar elementum. Vivamus tempus sodales justo ac suscipit. Donec quis est et enim convallis lacinia at vitae nisl. Nam suscipit urna eu egestas fermentum. Phasellus malesuada consequat libero, laoreet ultrices nunc pellentesque vel. Nam pulvinar luctus convallis. Curabitur diam lectus, aliquam sed faucibus vitae, euismod eget nulla.</p>
@@ -155,7 +187,19 @@ return <div style={{margin : "50px 0 0 0"}}>
 
            <p>Aliquam blandit porta porttitor. Maecenas vel cursus ex. In at velit eu tellus fringilla rutrum. Integer quis leo risus. Integer vestibulum, mauris nec elementum vestibulum, ipsum ante faucibus leo, in congue lacus dui sed dolor. Curabitur ornare at mi quis tempor. Curabitur pulvinar urna sapien, eget malesuada elit placerat id. Integer luctus mauris quis efficitur vestibulum. Pellentesque vitae dolor non dolor consectetur semper.</p>
            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu eros non tortor malesuada tempor. In vel lorem elit. Vestibulum a blandit neque. Vestibulum interdum eros euismod pulvinar elementum. Vivamus tempus sodales justo ac suscipit. Donec quis est et enim convallis lacinia at vitae nisl. Nam suscipit urna eu egestas fermentum. Phasellus malesuada consequat libero, laoreet ultrices nunc pellentesque vel. Nam pulvinar luctus convallis. Curabitur diam lectus, aliquam sed faucibus vitae, euismod eget nulla.</p>
-       <ReviewProduct id={props.id} />
+       <ReviewProduct id={props.id} 
+       reviews = {reviews}
+       total = {total}
+       totalRatings = {totalRatings} 
+       rating1={rating1}  
+       rating2={rating2}  
+       rating3={rating3}  
+       rating4={rating4}  
+       rating5={rating5}  
+       ratingAvg = {ratingAvg}
+       largest = {largest}
+       largestIndex = {largestIndex}
+       />
        </div>
         </div>
     </div>

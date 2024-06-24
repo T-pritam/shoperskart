@@ -4,9 +4,17 @@ const onlyToken = require('../utils/onlyToken')
 exports.create=async(req,res)=>{
     try {
         req.body.user = onlyToken(req.body.user)
-        const created=await new Wishlist(req.body).populate({path:"product",populate:["brand"]})
-        await created.save()
-        res.status(201).json(created)
+        const total = await Wishlist.find({user : req.body.user,product : req.body.product}).countDocuments().exec()
+        console.log("total",total)
+        if(total == 0){
+            const created=await new Wishlist(req.body).populate({path:"product",populate:["category"]})
+            await created.save()
+            res.status(201).json(created)
+        }
+        else{
+            res.status(500).json({message:"Error adding product to wishlist, Alredy in the cart"})
+        }
+        
     } catch (error) {
         console.log(error);
         res.status(500).json({message:"Error adding product to wishlist, please try again later"})
@@ -27,7 +35,7 @@ exports.getByUserId=async(req,res)=>{
             limit=pageSize
         }
 
-        const result=await Wishlist.find({user:id}).skip(skip).limit(limit).populate({path:"product",populate:['brand']})
+        const result=await Wishlist.find({user:id}).skip(skip).limit(limit).populate({path:"product"})
         const totalResults=await Wishlist.find({user:id}).countDocuments().exec()
 
         res.set("X-Total-Count",totalResults)
@@ -39,7 +47,7 @@ exports.getByUserId=async(req,res)=>{
 }
 exports.updateById=async(req,res)=>{
     try {
-        const {id}=req.params
+        const {id} = req.params
         const updated=await Wishlist.findByIdAndUpdate(id,req.body,{new:true}).populate("product")
         res.status(200).json(updated)
     } catch (error) {
@@ -57,18 +65,35 @@ exports.deleteById=async(req,res)=>{
         res.status(500).json({message:"Error deleting that product from wishlist, please try again later"})
     }
 }
+exports.deleteByUserId=async(req,res)=>{
+    try {
+        req.params.id=onlyToken(req.params.id)
+        console.log(req.params)
+        const deleted=await Wishlist.findOneAndDelete({user : req.params.id,product : req.params.product})
+        const delet=await Wishlist.find({user : req.params.id,product : req.params.product})
+        console.log(delet)
+        return res.status(200).json(deleted)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message:"Error deleting that product from wishlist, please try again later"})
+    }
+}
 
 exports.getByUserIdInList=async(req,res)=>{
     try {
         req.params.id = onlyToken(req.params.id)
         const {id}=req.params
-        const result=await Wishlist.find({user:id})
+        const totalDocs=await Wishlist.find({user:id}).countDocuments().exec()
+        const result=await Wishlist.find({user:id}).populate('product')
         const arr = []
         result.forEach((prod) =>(
-            arr.push(prod.product._id)
+            arr.push(prod.product.slNo)
+        ))
+        result.forEach((prod) =>(
+            console.log(prod.product.slNo)
         ))
 
-        res.status(200).json(arr)
+        res.status(200).json({wishlist : arr,total : totalDocs})
     } catch (error) {
         console.log(error);
         res.status(500).json({message:"Error fetching your wishlist, please try again later"})

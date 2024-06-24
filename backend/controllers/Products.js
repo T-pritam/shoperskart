@@ -46,7 +46,7 @@ exports.getall = async (req, res) => {
 
 exports.get = async (req,res) => {
     try{
-        const product =await Product.findById(req.params.id).populate("brand")
+        const product =await Product.findById(req.params.id).populate("category")
         return res.status(200).json(product)
     }
     catch(error){

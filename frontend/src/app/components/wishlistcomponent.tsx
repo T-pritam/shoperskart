@@ -13,6 +13,8 @@ export default function WishlistComponent(props:any){
     const cookies = new Cookies()
     const [msg,setMsg] = useState("")
 
+   
+
     async function AddtoCartfunc() {
       try{
         const addprod = await axios.post(process.env.NEXT_PUBLIC_BASE_URL+'cart',{
@@ -56,7 +58,7 @@ export default function WishlistComponent(props:any){
   <div className="card-body">
     <h5 className="card-title titletext">{props.product.product.title}</h5>
     <div style={{display:"flex",justifyContent : "space-between",padding:"0 1vh 0 1vh "}}>
-    <p className="card-text brandtext">{props.product.product.brand.name}</p>
+    <p className="card-text brandtext">{props.product.product.brandname}</p>
     <p className="card-text">&#8377;{new Intl.NumberFormat('en-IN').format(props.product.product.price)}</p>
     </div>
     <div className="buttons">

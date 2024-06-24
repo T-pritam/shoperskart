@@ -1,19 +1,77 @@
 "use client"
 
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useCallback,useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import Addtocart from './addtocart';
-import Wishlist from './addtowishlist';
 import { IoStarSharp } from "react-icons/io5";
+import { FaHeart } from "react-icons/fa6";
+import {toast} from 'sonner'
 import '../../../static/css/home.css'
 
 function BasicExample(props:any) {
   const router = useRouter()
   const cookies = new Cookies()
-console.log(props.product[117])
-    
+  const [auth,setAuth] = useState(false)
+  const [wishlistProd,setwishlistProd] = useState<unknown[]>([])  
+  const [totalWishlit,settotalWishlit] = useState(0) 
+  
+  const [toggleStates, setToggleStates] = useState<boolean[]>(Array.from({ length: 200 }, () => false));
+
+  useEffect(() =>{
+
+    const getWishlistProd = async() => {
+      try{
+        const cartProduct = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"wishlist/user/list/"+cookies.get("access_token"))
+        setwishlistProd(cartProduct.data.wishlist)
+        settotalWishlit(cartProduct.data.total)
+        const initialToggleStates = Array(200).fill(false);
+        cartProduct.data.wishlist.map((prod:any) => {
+          initialToggleStates[prod] = true
+        })
+        setToggleStates(initialToggleStates)
+        }
+        catch(err:any){
+          toast.error(err.message)
+        }
+    }
+
+    if(cookies.get("access_token")){
+        setAuth(true)
+        getWishlistProd()
+    }  
+},[])
+
+
+const addtowish = async(index : any,id:any) => {
+  const updatedStatus = [...toggleStates];
+  updatedStatus[index] = !updatedStatus[index];
+  setToggleStates(updatedStatus);
+
+  try{
+    console.log(updatedStatus[index])
+    if (updatedStatus[index]) {
+      console.log(3)
+      await axios.post(process.env.NEXT_PUBLIC_BASE_URL+"wishlist/",{
+        user : cookies.get("access_token"),
+        product : id,
+    });
+    } else {
+      console.log(6)
+      await axios.delete(process.env.NEXT_PUBLIC_BASE_URL+`wishlist/${id}/${cookies.get("access_token")}`);
+    }
+  }
+  catch(err){
+    updatedStatus[index] = !updatedStatus[index];
+    setToggleStates(updatedStatus);
+    console.error('Failed to update wishlist', err);
+  }
+
+  
+}
+
+
 
 return <div>
 
@@ -22,24 +80,49 @@ return <div>
 
 
 
-    {props.product.map((prod:any) => (
+    {props.product.map((prod:any,index:number) => (
 <div key={prod._id} className='boxShadow'>
   
 <div className="cardd">
   <img src={prod.thumbnail} className="image" alt="..." onClick={ () => {
   router.push('/product/'+prod._id)}} />
   
-<div className="card-body" style={{textAlign:"left"}}>
+<div className="card-body" style={{textAlign:"left",cursor:"pointer"}} onClick={ () => {
+  router.push('/product/'+prod._id)}}>
 <div className='divpricebtn'>
   <div><p className="card-title titletext prodtitle">{prod.title}</p></div>
-    <div className='wishlisticon wishlistbtn'><Wishlist product = {prod} /></div>
+    <div>
+
+
+
+      {
+        auth ? <div>
+          <FaHeart className="wishlisticon" 
+        size={'20px'} 
+        style={{ color: toggleStates[index] ? 'red' : 'gray', cursor: 'pointer' }}
+        onClick={(e) => {
+            e.stopPropagation();
+            addtowish(index,prod._id)}} 
+            />
+        </div> :
+        <div>
+          <FaHeart className="wishlisticon" color="#c2c2c2" onClick={(e) => {
+        e.stopPropagation();
+          console.log("poiuy")
+          router.push("/login")}} />
+        </div>
+      }
+    
+    
+    
+    </div>
 </div>
 
 
 {
-  prod.brand == "abc" ?
-  <p style={{marginBottom:"0"}}>{prod.category.name}</p> :
-  <p style={{marginBottom:"0"}}>{prod.brand}</p>
+  prod.brandname == "abc" ?
+  <p style={{marginBottom:"0",fontSize:"13px"}}>{prod.category.name}</p> :
+  <p style={{marginBottom:"0",fontSize:"13px"}}>{prod.brandname}</p>
 }
 
 {

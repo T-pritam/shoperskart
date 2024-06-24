@@ -29,6 +29,7 @@ export default function Cart(){
                     const data = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"wishlist/user/"+cookie.get("access_token"))
                 setCount(4)
                 setCart(data.data)
+                console.log(data.data)
                 }
                 else{
                     router.push("/login")

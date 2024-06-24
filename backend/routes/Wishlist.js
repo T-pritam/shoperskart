@@ -9,5 +9,6 @@ router
     .get("/user/list/:id",wishlistController.getByUserIdInList)
     .patch("/:id",wishlistController.updateById)
     .delete("/:id",wishlistController.deleteById)
+    .delete("/:product/:id",wishlistController.deleteByUserId)
 
 module.exports=router

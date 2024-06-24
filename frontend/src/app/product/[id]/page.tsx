@@ -10,13 +10,14 @@ export default async function Product({params}:
     const [product,setProduct] = useState<unknown[]>([])
     const [img,setImg] = useState([])
     const [count,setCount] = useState(0)
-    const [htmlImg,setHtmlImg] = useState('')
+    const [category,setCategory] = useState('')
 
     useEffect(() => {
         const getcart = async () => {
             try{
                 const a = axios.get(process.env.NEXT_PUBLIC_BASE_URL+"products/get/"+params.id).then((res) => {
                     setProduct(res.data)
+                    setCategory(res.data.category)
                     setImg(res.data.images)
                 })
                 setCount(4)
@@ -34,7 +35,7 @@ export default async function Product({params}:
     return <>
         <div>
         <NavScrollExample />
-        <MyCarousel product = {product} img = {img}  id = {params.id}/>
+        <MyCarousel product = {product} img = {img}  id = {params.id} categories={category}/>
         </div>
     
     </>

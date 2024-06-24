@@ -45,8 +45,13 @@
 
 .wishlisticon{
     position: absolute;
+    font-size: 20px;
     right: 5px;
     top: 10px;
+}
+.wishlisticon:hover{
+    transform: scale(1.2);
+    
 }
 
 .divpricebtn{

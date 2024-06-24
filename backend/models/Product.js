@@ -6,9 +6,17 @@ const productSchema= new Schema({
         type:String,
         required:true
     },
+    slNo:{
+        type:String,
+        required:true
+    },
     description:{
         type:String,
         required:true
+    },
+    brandname:{
+        type : String,
+        required : true
     },
     price:{
         type:Number,
@@ -18,15 +26,38 @@ const productSchema= new Schema({
         type: Number,
         default: 0,
     },
+    rating: {
+        type: Number,
+        default: 0,
+        required: false
+    },
+    totalreviews: {
+        type: Number,
+        default: 0,
+        required: false
+    },
+    totalratings: {
+        type: Number,
+        default: 0,
+        required: false
+    },
     category:{
         type:Schema.Types.ObjectId,
         ref:"Category",
         required:true
     },
-    brand:{
+    reviews:{
         type:Schema.Types.ObjectId,
-        ref:"Brand",
-        required:true
+        ref:"Review",
+        required:false
+    },
+    returnPolicy:{
+        type : String,
+        required: false,
+    },
+    shippingInformation:{
+        type : String,
+        required: false,
     },
     stockQuantity:{
         type:Number,

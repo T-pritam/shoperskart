@@ -41,7 +41,7 @@ exports.getByProductId = async (req, res) => {
                     ratings[5] += 1
                     break;
             }
-            if (prod.comment == "") {
+            if (prod.comment == undefined) {
                 count += 1
             }
             totalRating += prod.rating

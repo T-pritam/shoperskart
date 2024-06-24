@@ -37,7 +37,7 @@ export default function CartComponent(props:any){
     <div className="col-md-7">
       <div className="card-body" style={{padding:"1vw"}}>
       <h5 className=" title-text">{props.product.product.title}</h5>
-        <h6 className="brand">{props.product.product.brand.name}</h6>
+        <h6 className="brand">{props.product.product.brandname}</h6>
         <div>
         <h6 className="card-title" style={{display:"inline-block"}}>&#8377;{new Intl.NumberFormat('en-IN').format(Math.floor(props.product.product.price-(props.product.product.price*props.product.product.discountPercentage)/100))}</h6>
         <p className="card-title" style={{textDecoration:"line-through",display:"inline-block",marginLeft: "5px"}}>&#8377;{new Intl.NumberFormat('en-IN').format(props.product.product.price)}</p>
