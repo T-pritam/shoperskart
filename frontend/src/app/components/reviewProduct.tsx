@@ -108,7 +108,7 @@ useEffect(() => {
 
                         <div key={prod._id}>
                             {
-                                prod.comment == undefined ? <div></div>   :
+                                prod.comment == undefined ||  prod.comment == ""? <div></div>   :
                             
                             <div key={prod._id} className="reiewbox">
                             {

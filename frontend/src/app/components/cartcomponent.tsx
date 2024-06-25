@@ -25,7 +25,7 @@ export default function CartComponent(props:any){
     },[quantity,price,finalprice])
 
     return <>
-        <div className="card mb-3 cardd" style={{display:"inline-block"}}>
+        <div className="card mb-3 carddd" style={{display:"inline-block"}}>
   <div className="row g-0">
     <div className="col-md-5">
 
@@ -40,7 +40,7 @@ export default function CartComponent(props:any){
         <h6 className="brand">{props.product.product.brandname}</h6>
         <div>
         <h6 className="card-title" style={{display:"inline-block"}}>&#8377;{new Intl.NumberFormat('en-IN').format(Math.floor(props.product.product.price-(props.product.product.price*props.product.product.discountPercentage)/100))}</h6>
-        <p className="card-title" style={{textDecoration:"line-through",display:"inline-block",marginLeft: "5px"}}>&#8377;{new Intl.NumberFormat('en-IN').format(props.product.product.price)}</p>
+        <p className="card-title" style={{textDecoration:"line-through",display:"inline-block",marginLeft: "5px"}}>&#8377;{new Intl.NumberFormat('en-IN').format(Math.floor(props.product.product.price))}</p>
         </div>
         <div className="mt-2" style={{display:"inline-block",justifyContent:"space-between"}}>
             <div style={{display:"inline-block"}}>
@@ -48,6 +48,7 @@ export default function CartComponent(props:any){
               
               props.changeAmount(quantity-1 != 0 ? -1 * props.product.product.price-(props.product.product.price*props.product.product.discountPercentage)/100:0)
               setQuantity(quantity-1 != 0 ? quantity-1 : quantity)
+
             }}>-</button>
             <h5 className="qty">{quantity} </h5> 
             <button type="button" className="btn btn-dark plusbtn" style={{backgroundColor:"#ddd",color:"black",border:"0"}} onClick={() => {

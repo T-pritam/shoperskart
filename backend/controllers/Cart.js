@@ -8,7 +8,7 @@ exports.create=async(req,res)=>{
         if(find!=0){
             return res.json({"message" : "Product Already in the cart"})
         }
-        const created=await new Cart(req.body).populate({path:"product",populate:{path:"brand"}});
+        const created=await new Cart(req.body).populate("product");
         await created.save()
         res.status(201).json({"message":"Product Added to Cart"})
         
@@ -22,7 +22,8 @@ exports.getByUserId=async(req,res)=>{
     try {
         req.params.id = onlytoken(req.params.id)
         const {id}=req.params
-        const result = await Cart.find({ user: id }).populate({path:"product",populate:{path:"brand"}});
+        const result = await Cart.find({ user: id }).populate("product");
+        console.log(result)
         res.status(200).json(result)
     } catch (error) {
         console.log(error);
@@ -33,7 +34,7 @@ exports.getByUserId=async(req,res)=>{
 exports.updateById=async(req,res)=>{
     try {
         const {id}=req.params
-        const updated=await Cart.findByIdAndUpdate(id,req.body,{new:true}).populate({path:"product",populate:{path:"brand"}});
+        const updated=await Cart.findByIdAndUpdate(id,req.body,{new:true}).populate("product");
         res.status(200).json(updated)
     } catch (error) {
         console.log(error);

@@ -46,20 +46,22 @@ export default function ProceedToCheckout(){
     },[])
 
     async function handleOrder(){
-        
+            console.log("Clicked")
             const order = await axios.post(process.env.NEXT_PUBLIC_BASE_URL+"orders/",{
                 user : cookies.get("access_token"),
                 address : oneaddress,
                 productsCount : totalProducts,
                 paymentMode : payment,
                 item : cartprod,
-                total : (price - (price/100*7))
+                total : (price - (price*7)/100)
             })
-            toast.error(order.data.message)
+            if(order.status == 200){
+                toast.error(order.data.message)
+            }
             if(order.status == 201){
                 setTimeout(() => {
                     toast.success("Order Placed")
-                    router.push("/")
+                    router.push("/order")
                 }, 1000);
             }
         }
@@ -84,7 +86,7 @@ export default function ProceedToCheckout(){
   <option selected>Select Address</option>
   {
     address.map((prod:any) => (
-        <option key={prod._id} value={prod._id}>Name : {prod.name}{prod.street},{prod.city},{prod.state},{prod.postalCode}, Phone-{prod.phoneNumber}</option>
+        <option key={prod._id} value={prod._id}>Name : {prod.name} , {prod.street},{prod.city},{prod.state},{prod.postalCode}, Phone-{prod.phoneNumber}</option>
     ))
   }
 </select>

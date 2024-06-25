@@ -7,6 +7,7 @@ import Cookies from 'universal-cookie';
 import { FaShoppingCart } from "react-icons/fa";
 import ReviewProduct from './reviewProduct';
 import { IoStarSharp } from "react-icons/io5";
+import { FaHeart } from "react-icons/fa6";
 import './a.css'
 
 
@@ -28,6 +29,7 @@ const MyCarousel = (props : any) => {
   const [ratingAvg,setRatingAvg] = useState(0)
   const [largest,setLargest] = useState(0)
   const [largestIndex,setLargestIndex] = useState(0)
+  const [isWhislisted,setIsWishlisted] = useState(false)
 
 
   useEffect(() => {
@@ -44,6 +46,9 @@ const MyCarousel = (props : any) => {
         setRatingAvg(data.data.ratings[0])
         setLargest(data.data.ratings[6])
         setLargestIndex(data.data.ratings[7])
+      const iswish = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`wishlist/getbyuseridandproductid/${props.id}/${cookies.get("access_token")}`)
+      setIsWishlisted(iswish.data.find)
+      console.log("Is WIshlisted ",iswish.data.find)
       if(cookies.get("access_token")){
         const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`cart/user/${cookies.get("access_token")}/${props.id}`)   
         setAuth(true)
@@ -55,7 +60,7 @@ const MyCarousel = (props : any) => {
     getcartprod()
   },[])
 
-  useEffect(() => {
+useEffect(() => {
 const carousel = document.querySelector('.carousel-images') as HTMLInputElement;
 const images = document.querySelectorAll('.carousel-image');    
 const prevButton = document.querySelector('.carousel-button.prevv') as HTMLInputElement;
@@ -102,6 +107,29 @@ return <div style={{margin : "50px 0 0 0"}}>
             )}
   <div className='containerr'>
         <div className='leftt'>
+          <div className='wishbutton'>
+              {
+                  isWhislisted == false ? <div>
+                    <FaHeart className='btnofwish' size={'20px'} color='#c2c2c2' onClick={async() => {
+                      await axios.post(process.env.NEXT_PUBLIC_BASE_URL+"wishlist/",{
+                        user : cookies.get("access_token"),
+                        product : props.id,
+                    });
+                    setIsWishlisted(true)
+                    }}/>
+                  </div> :
+                  <div>
+                    <FaHeart className='btnofwish' size={'20px'} color='#ff1111' onClick={async() => {
+                        await axios.delete(process.env.NEXT_PUBLIC_BASE_URL+`wishlist/${props.id}/${cookies.get("access_token")}`);
+                        setIsWishlisted(false)
+                    }}/>
+                  </div>
+              }
+          
+            
+          
+          
+          </div>
             <div className="carousel">
               <button className="carousel-button prevv">‹</button>
               <div className="carousel-images">

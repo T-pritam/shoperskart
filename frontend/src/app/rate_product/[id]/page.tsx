@@ -22,9 +22,7 @@ export default function RateProduct({params}:
         price : number;
         discountPercentage: number;
         title : string;
-        brand : {
-            name : string;
-        };
+        brandname : string;
 
       }
 
@@ -37,9 +35,7 @@ export default function RateProduct({params}:
         price : 0,
         discountPercentage: 0,
         title : "",
-        brand : {
-            name : "",
-        },
+        brandname : "",
     })
     const [review,setReview] = useState<unknown[]>([])
     const [reviewText,setReviewText] = useState("")
@@ -110,13 +106,13 @@ export default function RateProduct({params}:
             <div className="pagetit">
                 <h2>Product Review</h2>
             </div>
-                <div className="displayflex">
-                <img src={reviewProduct?.thumbnail} className="rateimg" onClick={() =>{
+                <div className="displayflex" onClick={() =>{
                     router.push("/product/"+reviewProduct?._id)
-                }} alt="" />
+                }}>
+                <img src={reviewProduct?.thumbnail} className="rateimg"  alt="" />
                 <div>
                     <p className="ratetit">{reviewProduct?.title}</p>
-                    <p className="ratebrand">{reviewProduct?.brand.name}</p>
+                    <p className="ratebrand">{reviewProduct?.brandname}</p>
                     <p className="rateprice">Price : &#8377;{new Intl.NumberFormat('en-IN').format(Math.floor(reviewProduct?.price - (reviewProduct?.price * reviewProduct?.discountPercentage)/100))}</p>    
                 </div>
                 </div>
@@ -160,7 +156,7 @@ export default function RateProduct({params}:
                     {
                         reviewAvailable == true ?
                         <button type="button" className="submitbtn" onClick={async() => {
-                            toast.success("Successfully Updated")
+                            toast.success("Your rating has been saved")
                                 await axios.patch(process.env.NEXT_PUBLIC_BASE_URL+"review/"+review,{
                                 rating: rating,
                                 comment: reviewText})
@@ -178,6 +174,7 @@ export default function RateProduct({params}:
                                 rating: rating,
                                 comment: reviewText
                             })
+                            toast.success("Your rating has been saved")
                             router.refresh()
                             }
                         }}>Submit</button>

@@ -53,6 +53,12 @@
   max-height: 30px;
   cursor: pointer;
 }
+.btnofwish{
+  cursor: pointer;
+}
+.btnofwish:hover{
+  transform: scale(1.2);
+}
 .logo{
   width: 113px;
   cursor: pointer;
@@ -173,10 +179,15 @@
 }
 
 
-
+.wishbutton{
+  position : absolute;
+  top: 20px;
+  right: 2vw;
+  
+}
 
 .btnsdiv{
-  margin: 90px 0 0 0;
+  margin: 80px 0 20px 0;
 }
 
 .btns{

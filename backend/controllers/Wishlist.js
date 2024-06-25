@@ -68,7 +68,6 @@ exports.deleteById=async(req,res)=>{
 exports.deleteByUserId=async(req,res)=>{
     try {
         req.params.id=onlyToken(req.params.id)
-        console.log(req.params)
         const deleted=await Wishlist.findOneAndDelete({user : req.params.id,product : req.params.product})
         const delet=await Wishlist.find({user : req.params.id,product : req.params.product})
         console.log(delet)
@@ -98,4 +97,18 @@ exports.getByUserIdInList=async(req,res)=>{
         console.log(error);
         res.status(500).json({message:"Error fetching your wishlist, please try again later"})
     }
+}
+
+exports.getbyuseridandproductid = async(req,res) => {
+    try{
+        req.params.id = onlyToken(req.params.id)
+        const isWishlisted=await Wishlist.find({user : req.params.id,product : req.params.product}).countDocuments().exec()
+        find = false
+        isWishlisted == 0 ? find = false :find = true
+        res.status(200).json({find})
+    }
+    catch (error) {
+        res.status(500).json({message:"Error fetching your wishlist, please try again later"})
+    }
+
 }

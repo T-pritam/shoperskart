@@ -1,10 +1,15 @@
 const Review = require("../models/Review")
 const onlytoken = require("../utils/onlyToken")
+const Product = require("../models/Product")
 
 exports.create = async (req, res) => {
     try {
         req.body.user = onlytoken(req.body.user)
         const created = await new Review(req.body)
+        await Product.findOneAndUpdate({id : req.body.product},{
+            totalratings : totalRating + 1
+            
+        })
         await created.save()
         res.status(201).json(created)
     } catch (error) {
@@ -76,7 +81,7 @@ exports.updateById = async (req, res) => {
 exports.getByUserProduct = async (req, res) => {
     try {
         const user = onlytoken(req.params.user)
-        const result = await Review.findOne({ user: user, product: req.params.id }).populate({ path: "product", populate: { path: "brand" } })
+        const result = await Review.findOne({ user: user, product: req.params.id }).populate('product')
         const totalDocs = await Review.findOne({ user: user, product: req.params.id }).countDocuments().exec()
         res.status(200).json({ result, totalDocs })
     } catch (error) {

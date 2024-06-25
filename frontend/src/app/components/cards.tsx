@@ -43,7 +43,7 @@ function BasicExample(props:any) {
     }  
 },[])
 
-
+console.log("wishlist Array",toggleStates)
 const addtowish = async(index : any,id:any) => {
   const updatedStatus = [...toggleStates];
   updatedStatus[index] = !updatedStatus[index];
@@ -99,10 +99,10 @@ return <div>
         auth ? <div>
           <FaHeart className="wishlisticon" 
         size={'20px'} 
-        style={{ color: toggleStates[index] ? 'red' : 'gray', cursor: 'pointer' }}
+        style={{ color: toggleStates[prod.slNo] ? '#ff1111' : '#c2c2c2', cursor: 'pointer' }}
         onClick={(e) => {
             e.stopPropagation();
-            addtowish(index,prod._id)}} 
+            addtowish(prod.slNo,prod._id)}} 
             />
         </div> :
         <div>
