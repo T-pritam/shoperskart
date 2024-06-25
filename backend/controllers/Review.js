@@ -5,15 +5,36 @@ const Product = require("../models/Product")
 exports.create = async (req, res) => {
     try {
         req.body.user = onlytoken(req.body.user)
+        console.log(req.body)
         const created = await new Review(req.body)
-        await Product.findOneAndUpdate({id : req.body.product},{
-            totalratings : totalRating + 1
-            
-        })
         await created.save()
+        const newRating = parseInt(req.body.rating)
+        await Product.findByIdAndUpdate(req.body.product,[
+            {
+              $set: {
+                // Apply the formula for the new rating
+                rating: {
+                  $divide: [
+                    {
+                      $add: [
+                        { $multiply: [{ $toDouble: "$rating" }, { $toDouble: "$totalratings" }] }, // (rating * totalRatings)
+                        newRating // + new rating from request body
+                      ]
+                    },
+                    { $add: [{ $toDouble: "$totalratings" }, 1] } // Divide by (totalRatings + 1)
+                  ]
+                }
+              }
+            }
+          ])
+          await Product.findByIdAndUpdate(req.body.product,{
+            $inc: {
+              totalratings: 1 // Increment discount by 5
+            }
+          })
         res.status(201).json(created)
     } catch (error) {
-        console.log(error);a
+        console.log(error);
         return res.status(500).json({ message: 'Error posting review, please trying again later' })
     }
 }
@@ -69,8 +90,38 @@ exports.getByProductId = async (req, res) => {
 
 exports.updateById = async (req, res) => {
     try {
+        console.log(req.params)
         const { id } = req.params
+        const prev = await Review.findByIdAndUpdate(id, req.body)
         const updated = await Review.findByIdAndUpdate(id, req.body, { new: true }).populate('user')
+        const prod = await Product.findById(updated.product)
+        const newRating = parseFloat(updated.rating)
+        const oldRating = parseFloat(prev.rating)
+
+        await Product.findOneAndUpdate(updated.product,[
+            {
+              $set: {
+                // Apply the formula with the dynamic rating
+                rating: {
+                  $divide: [
+                    {
+                      $add: [
+                        {
+                          $subtract: [
+                            { $multiply: [{ $toDouble: "$rating" }, { $toDouble: "$totalratings" }] }, // (rating * totalRating)
+                            oldRating// - rating
+                          ]
+                        },
+                        newRating // + rating from request params
+                      ]
+                    },
+                    { $toDouble: "$totalratings" } // Divide by totalRating
+                  ]
+                }
+              }
+            }
+          ])
+        
         res.status(200).json(updated)
     } catch (error) {
         console.log(error);
