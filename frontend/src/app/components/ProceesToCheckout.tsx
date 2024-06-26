@@ -27,21 +27,20 @@ export default function ProceedToCheckout(){
             }
             else{
                 const addresses = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"address/user/"+cookies.get("access_token"))
-            const cartprods = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"cart/user/"+cookies.get("access_token"))
-            setAddress(addresses.data)
-            setCartprod(cartprods.data)
-            var a =0,b = 0,c = 0
-            cartprods.data.forEach((prod:any )=> {
+                const cartprods = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"cart/user/"+cookies.get("access_token"))
+                setAddress(addresses.data)
+                setCartprod(cartprods.data)
+                var a =0,b = 0,c = 0
+                cartprods.data.forEach((prod:any )=> {
                   a = (a + prod.quantity);
                     b = b + ((prod.product.price - (prod.product.price * prod.product.discountPercentage)/100) * prod.quantity);
                     c = c + 1;
-            })
-            setTotalProducts(c)
-            setItems(a)
-            setPrice(Math.floor(b))
+                })
+                setTotalProducts(c)
+                setItems(a)
+                setPrice(Math.floor(b))
             }
         }
-
         getProducts()
     },[])
 
@@ -142,9 +141,6 @@ export default function ProceedToCheckout(){
         <a href="/cart"> <button type="button" className="btn btn-dark" style={{backgroundColor:"#467546"}}>Go to Cart</button></a> 
         </div>
         </div>
-
-
     </div>
-
 }
 }

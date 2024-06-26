@@ -9,6 +9,7 @@ import ReviewProduct from './reviewProduct';
 import { IoStarSharp } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa6";
 import './a.css'
+import { toast } from 'sonner';
 
 
 const MyCarousel = (props : any) => {
@@ -46,12 +47,11 @@ const MyCarousel = (props : any) => {
         setRatingAvg(data.data.ratings[0])
         setLargest(data.data.ratings[6])
         setLargestIndex(data.data.ratings[7])
-      const iswish = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`wishlist/getbyuseridandproductid/${props.id}/${cookies.get("access_token")}`)
-      setIsWishlisted(iswish.data.find)
-      console.log("Is WIshlisted ",iswish.data.find)
       if(cookies.get("access_token")){
         const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`cart/user/${cookies.get("access_token")}/${props.id}`)   
         setAuth(true)
+        const iswish = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`wishlist/getbyuseridandproductid/${props.id}/${cookies.get("access_token")}`)
+        setIsWishlisted(iswish.data.find)
         if(a.data.count != 0){
           setCart(true)
         }
@@ -111,11 +111,17 @@ return <div style={{margin : "50px 0 0 0"}}>
               {
                   isWhislisted == false ? <div>
                     <FaHeart className='btnofwish' size={'20px'} color='#c2c2c2' onClick={async() => {
-                      await axios.post(process.env.NEXT_PUBLIC_BASE_URL+"wishlist/",{
-                        user : cookies.get("access_token"),
-                        product : props.id,
-                    });
-                    setIsWishlisted(true)
+                      if(cookies.get("access_token")){
+                        await axios.post(process.env.NEXT_PUBLIC_BASE_URL+"wishlist/",{
+                          user : cookies.get("access_token"),
+                          product : props.id,
+                      });
+                      setIsWishlisted(true)
+                      }
+                      else{
+                        router.push("/login")
+                      }
+                      
                     }}/>
                   </div> :
                   <div>
@@ -160,7 +166,15 @@ return <div style={{margin : "50px 0 0 0"}}>
       }
       }}> <FaShoppingCart /> Add to Cart</button>
   }
-  <button type="button" className="btn btn-dark btns">Buy now</button>
+  <button type="button" className="btn btn-dark btns" onClick={() => {
+    if(cookies.get("access_token")){
+
+    }
+    else{
+      toast.error("Login to Buy Products")
+      router.push("/login")
+    }
+  }}>Buy now</button>
         
             </div>
         </div>

@@ -108,7 +108,7 @@ exports.updateById = async (req, res) => {
                       $add: [
                         {
                           $subtract: [
-                            { $multiply: [{ $toDouble: "$rating" }, { $toDouble: "$totalratings" }] }, // (rating * totalRating)
+                            { $ceil: { $multiply: [{ $toDouble: "$rating" }, { $toDouble: "$totalratings" }] } },
                             oldRating// - rating
                           ]
                         },

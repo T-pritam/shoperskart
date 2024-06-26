@@ -100,6 +100,11 @@
   width: 35vw;
   margin-left:12vw;
 }
+.wishbutton{
+  position : absolute;
+  top: 20px;
+  right: 2vw;
+}
 
 .searchResult{
   max-height: 30vw;
@@ -135,13 +140,17 @@
 
 }
 
-@media (max-width: 768px),(max-width: 501px){
+@media (max-width: 768px){
   .search-barr{
     margin-left: -4vw;
     display: inline-block;
     width: 75vw;
     position: absolute;
     top: 7px;
+  }
+  .wishbutton{
+    top: 10vh;
+    right: 5vw;
   }
   .cart{
     margin-left: 50vw;
@@ -179,12 +188,7 @@
 }
 
 
-.wishbutton{
-  position : absolute;
-  top: 20px;
-  right: 2vw;
-  
-}
+
 
 .btnsdiv{
   margin: 80px 0 20px 0;
@@ -315,7 +319,7 @@
     margin-left: 0;
   }
   .leftt{
-    padding: 20px 20px 20px 20px;
+    padding: 50px 20px 20px 20px;
   }
   .carousel-image{
     width: 90vw;
