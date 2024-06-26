@@ -4,6 +4,7 @@ const router=express.Router()
 
 router
     .post("/",cartController.create)
+    .post("/createone/",cartController.createOne)
     .get("/user/:id",cartController.getByUserId)
     .get("/user/list/:id",cartController.getByUserIdInList)
     .get("/user/:user/:id",cartController.getbyUserAndProductId)

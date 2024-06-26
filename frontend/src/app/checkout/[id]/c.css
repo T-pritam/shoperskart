@@ -37,10 +37,41 @@
     width: 40vw;
     margin-top: 1.5vw;
 }
+.checkouttextone{
+    display: inline-block;
+    height: 20vh;
+    width: 40vw;
+    margin-top: 1.5vw;
+}
+.checkoutdiv{
+    height: 23vh;
+    display: flex;
+    justify-content: space-around;
+}
+.checkoutminusbtn,.chceckplusbtn{
+    background-color: black;
+    border : 0.7px solid black;
+    color: black ;
+    border: 0 ;
+    display: inline-block;
+    padding: 0.3vw 0.7vw;
+}
 
 @media (max-width:700px) {
     .checkoutprod{
         width: 100%;
+    }
+    .checkouttextone{
+        display: inline-block;
+        height: 20vh;
+        width: 40vw;
+        margin-top: 1.5vw;
+    }
+    .checkoutdiv{
+        display: block;
+        justify-content: flex-start;
+        height: 18.5vh;
+        justify-content: space-evenly;
     }
     .checkoutprice{
         position: relative;

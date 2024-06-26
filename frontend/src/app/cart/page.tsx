@@ -19,6 +19,7 @@ export default function Cart(){
     
 
     function handleStateAmount(newValue:any) {
+        console.log(newValue)
         setTotalPrice(totalprice + newValue);
         if(newValue != 0){
             newValue > 0?setTotalProd(totalProd+1):setTotalProd(totalProd-1)
@@ -114,7 +115,7 @@ export default function Cart(){
         <hr />
         
         <div style={{textAlign:"center"}}>
-        <a href="/checkout"> <button type="button" className="btn btn-dark" style={{backgroundColor:"#467546",margin:"10px"}}>Proceed to Checkout</button></a> 
+        <a href="/checkout/all"> <button type="button" className="btn btn-dark" style={{backgroundColor:"#467546",margin:"10px"}}>Proceed to Checkout</button></a> 
         <a href="/"> <button type="button" className="btn btn-dark" style={{backgroundColor:"#467546"}}>Add More</button></a> 
         </div>
         </div>

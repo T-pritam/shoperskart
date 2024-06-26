@@ -5,7 +5,7 @@ import { useState,useEffect } from "react"
 import NavScrollExample from "./Navbar"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
-import '../checkout/c.css'
+import '../checkout/[id]/c.css'
 
 export default function ProceedToCheckout(){
     const cookies = new Cookies()

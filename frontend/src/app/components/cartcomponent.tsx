@@ -21,7 +21,6 @@ export default function CartComponent(props:any){
       })
       }
       updateCart()
-
     },[quantity,price,finalprice])
 
     return <>
@@ -29,7 +28,7 @@ export default function CartComponent(props:any){
   <div className="row g-0">
     <div className="col-md-5">
 
-      <img src={props.product.product.thumbnail} className="img-fluid rounded-start imgimg" alt="..." onClick={() => {
+      <img src={props.product.product.thumbnail} className="img-fluid rounded-start cartimg" alt="..." onClick={() => {
   localStorage.removeItem("prodId")
   localStorage.setItem("prodId",props.product.product._id)
   router.push('/product/'+props.product.product._id)}} />
@@ -46,7 +45,7 @@ export default function CartComponent(props:any){
             <div style={{display:"inline-block"}}>
             <button type="button" className="btn btn-dark minusbtn" style={{backgroundColor:"#ddd",color:"black",border:"0"}} onClick={() => {
               
-              props.changeAmount(quantity-1 != 0 ? -1 * props.product.product.price-(props.product.product.price*props.product.product.discountPercentage)/100:0)
+              props.changeAmount(quantity-1 != 0 ? -1 *( props.product.product.price-(props.product.product.price*props.product.product.discountPercentage)/100):0)
               setQuantity(quantity-1 != 0 ? quantity-1 : quantity)
 
             }}>-</button>
@@ -68,11 +67,7 @@ export default function CartComponent(props:any){
             </div>
             <div className="savetocartbtn">
               <button type="button" className="btn btn-dark" style={{backgroundColor:"#ddd",color:"black",border:"0"}} ref={ref} onClick={async (e) => {
-          
-                const a = await axios.delete(process.env.NEXT_PUBLIC_BASE_URL+"cart/"+props.product._id)
-                props.changeCart(props.product._id)
-                props.changeAmount( -1 * props.product.product.price)
-                props.changeCount()
+                router.push("/checkout/"+props.product.product._id)
               }}>Buy Now</button> 
             </div>
         </div>

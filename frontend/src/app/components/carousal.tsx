@@ -10,6 +10,7 @@ import { IoStarSharp } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa6";
 import './a.css'
 import { toast } from 'sonner';
+import Product from '../product/[id]/page';
 
 
 const MyCarousel = (props : any) => {
@@ -120,8 +121,7 @@ return <div style={{margin : "50px 0 0 0"}}>
                       }
                       else{
                         router.push("/login")
-                      }
-                      
+                      }  
                     }}/>
                   </div> :
                   <div>
@@ -168,7 +168,7 @@ return <div style={{margin : "50px 0 0 0"}}>
   }
   <button type="button" className="btn btn-dark btns" onClick={() => {
     if(cookies.get("access_token")){
-
+      router.push("/checkout/"+props.product._id)
     }
     else{
       toast.error("Login to Buy Products")

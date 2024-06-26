@@ -18,6 +18,20 @@ exports.create=async(req,res)=>{
     }
 }
 
+exports.createOne=async(req,res)=>{
+    try {
+        req.body.user = onlytoken(req.body.user)
+        const created=await new Cart(req.body).populate("product");
+        await created.save()
+        console.log(created)
+        res.status(201).json(created)
+        
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({message:'Error adding product to cart, please trying again later'})
+    }
+}
+
 exports.getByUserId=async(req,res)=>{
     try {
         req.params.id = onlytoken(req.params.id)

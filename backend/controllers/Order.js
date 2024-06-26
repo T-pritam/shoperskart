@@ -24,6 +24,20 @@ exports.create=async(req,res)=>{
     }
 }
 
+exports.createOne=async(req,res)=>{
+    try {
+        req.body.user = onlytoken(req.body.user)
+        const created=new Order(req.body)
+        await created.save()
+        console.log(req.params.id)
+        await Cart.findByIdAndDelete(req.params.id)
+        return res.status(201).json({message : "Order Placed"})
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({message:'Error creating an order, please trying again later'})
+    }
+}
+
 exports.getByUserId=async(req,res)=>{
     try {
         const id=onlytoken(req.params.id)
@@ -55,5 +69,16 @@ exports.updateById=async(req,res)=>{
     } catch (error) {
         console.log(error);
         res.status(500).json({message:'Error updating order, please try again later'})
+    }
+}
+
+exports.deleteById=async(req,res)=>{
+    try {
+        const {id}=req.params
+        const deleted=await Order.findByIdAndDelete(id)
+        res.status(200).json(deleted)
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({message:'Error deleting cart item, please trying again later'})
     }
 }
