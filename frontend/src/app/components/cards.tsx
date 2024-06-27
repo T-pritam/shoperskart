@@ -42,23 +42,20 @@ function BasicExample(props:any) {
         getWishlistProd()
     }  
 },[])
-
-console.log("wishlist Array",toggleStates)
 const addtowish = async(index : any,id:any) => {
   const updatedStatus = [...toggleStates];
   updatedStatus[index] = !updatedStatus[index];
   setToggleStates(updatedStatus);
 
   try{
-    console.log(updatedStatus[index])
     if (updatedStatus[index]) {
-      console.log(3)
+      
       await axios.post(process.env.NEXT_PUBLIC_BASE_URL+"wishlist/",{
         user : cookies.get("access_token"),
         product : id,
     });
     } else {
-      console.log(6)
+  
       await axios.delete(process.env.NEXT_PUBLIC_BASE_URL+`wishlist/${id}/${cookies.get("access_token")}`);
     }
   }
@@ -108,7 +105,6 @@ return <div>
         <div>
           <FaHeart className="wishlisticon" color="#c2c2c2" onClick={(e) => {
         e.stopPropagation();
-          console.log("poiuy")
           router.push("/login")}} />
         </div>
       }
@@ -156,7 +152,7 @@ return <div>
       ))}
 
 </div>
-      
+
 </div>
 
 }

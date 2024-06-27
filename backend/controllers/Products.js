@@ -54,6 +54,16 @@ exports.get = async (req,res) => {
     }
 }
 
+exports.getone = async (req,res) => {
+    try{
+        const product =await Product.findById(req.params.id).countDocuments().exec()
+        return res.status(200).json(product)
+    }
+    catch(error){
+        res.status(500).json({message:'Error fetching product, please try again later'})
+    }
+}
+
 exports.getbysearch = async (req,res) => {
     try{
         const { search } = req.body

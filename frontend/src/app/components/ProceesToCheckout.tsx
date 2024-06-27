@@ -45,7 +45,6 @@ export default function ProceedToCheckout(){
     },[])
 
     async function handleOrder(){
-            console.log("Clicked")
             const order = await axios.post(process.env.NEXT_PUBLIC_BASE_URL+"orders/",{
                 user : cookies.get("access_token"),
                 address : oneaddress,

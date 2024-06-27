@@ -19,7 +19,6 @@ export default function Cart(){
     
 
     function handleStateAmount(newValue:any) {
-        console.log(newValue)
         setTotalPrice(totalprice + newValue);
         if(newValue != 0){
             newValue > 0?setTotalProd(totalProd+1):setTotalProd(totalProd-1)
@@ -44,7 +43,6 @@ export default function Cart(){
                 }
                 const data = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"cart/user/"+cookie.get("access_token"))
                 setCart(data.data)
-                setCount(4)
                 var a =0,b = 0,c = 0
                 data.data.forEach((prod:any )=> {
                   a = (a + prod.quantity);

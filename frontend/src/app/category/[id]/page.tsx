@@ -2,10 +2,16 @@
 import { useState,useEffect } from "react"
 import { useRouter } from "next/navigation"
 import axios from "axios"
-import BasicExample from "./cards"
-import '../../../static/css/home.css'
+import BasicExample from "../../components/cards"
+import '../../../../static/css/home.css'
+import NavScrollExample from "@/app/components/Navbar"
+import { DiBackbone, DiVim } from "react-icons/di"
 
-export default function Categories(){
+export default function Categories({params} : {
+    params :{
+        id : string
+    }
+}){
     const router = useRouter()
     const [categories,setCategories] = useState<unknown[]>([])
     const [product,setProduct] = useState<unknown[]>([])
@@ -13,7 +19,7 @@ export default function Categories(){
 
     useEffect(() => {
         const sendotp = async() => {
-                const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"products/getall?limit=25&page=4")
+                const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"products/getall?category="+params.id)
                 setProduct(a.data)                
         }
         sendotp()
@@ -69,8 +75,9 @@ export default function Categories(){
         prevButton?.addEventListener('click', showPrev);
        })
 
-
-    return <div style={{margin:"50px 1vw 1vw 1vw"}}>
+    return <div><NavScrollExample />
+        <div style={{margin:"50px 1vw 1vw 1vw"}}>
+        
         <h1>Categories</h1>
         <h4 onClick={async () => {
             const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"products/getall")
@@ -84,8 +91,6 @@ export default function Categories(){
 
                 <div style={{display:"inline-block"}}>
                 <img src={prod.img} onClick={async () => {
-                    // const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"products/getall?category="+prod._id)
-                    // setProduct(a.data) 
                     router.push("/category/"+prod._id) 
                 }} style={{width:"80px" ,cursor:"pointer"}} alt="..." />
                 <h6>{prod.name}</h6>
@@ -124,6 +129,6 @@ export default function Categories(){
         
 
     <BasicExample product = {product} />
-    
+    </div>
     </div>
 }

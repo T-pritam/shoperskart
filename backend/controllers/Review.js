@@ -5,7 +5,6 @@ const Product = require("../models/Product")
 exports.create = async (req, res) => {
     try {
         req.body.user = onlytoken(req.body.user)
-        console.log(req.body)
         const created = await new Review(req.body)
         await created.save()
         const newRating = parseInt(req.body.rating)
@@ -42,7 +41,6 @@ exports.create = async (req, res) => {
 exports.getByProductId = async (req, res) => {
     try {
         const { id } = req.params
-        console.log("id",id)
         var count = 0
         var totalRating = 0
         const ratings = new Array(8).fill(0);
@@ -90,7 +88,7 @@ exports.getByProductId = async (req, res) => {
 
 exports.updateById = async (req, res) => {
     try {
-        console.log(req.params)
+        (req.params)
         const { id } = req.params
         const prev = await Review.findByIdAndUpdate(id, req.body)
         const updated = await Review.findByIdAndUpdate(id, req.body, { new: true }).populate('user')

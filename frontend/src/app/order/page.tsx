@@ -47,7 +47,6 @@ export default function Order(){
         }
         
     },[])
-    console.log(orderitem[0])
     return <div>
         <NavScrollExample />
         <div style={{margin:"50px 1vw 1vw 1vw"}}>

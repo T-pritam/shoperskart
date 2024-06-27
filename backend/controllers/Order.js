@@ -16,7 +16,6 @@ exports.create=async(req,res)=>{
         await created.save()
         
         const deletecart = await Cart.deleteMany({user:req.body.user})
-        console.log("Order",created)
         return res.status(201).json({message : "Order Placed"})
     } catch (error) {
         console.log(error);
@@ -29,7 +28,6 @@ exports.createOne=async(req,res)=>{
         req.body.user = onlytoken(req.body.user)
         const created=new Order(req.body)
         await created.save()
-        console.log(req.params.id)
         await Cart.findByIdAndDelete(req.params.id)
         return res.status(201).json({message : "Order Placed"})
     } catch (error) {

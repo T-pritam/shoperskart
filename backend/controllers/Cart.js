@@ -23,7 +23,6 @@ exports.createOne=async(req,res)=>{
         req.body.user = onlytoken(req.body.user)
         const created=await new Cart(req.body).populate("product");
         await created.save()
-        console.log(created)
         res.status(201).json(created)
         
     } catch (error) {
