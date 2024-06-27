@@ -80,8 +80,7 @@ export default function Categories({params} : {
         
         <h1>Categories</h1>
         <h4 onClick={async () => {
-            const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"products/getall")
-                setProduct(a.data)
+            router.push("/")
         }}>All</h4>
         <div className="optiona" style={{width:"100%",height:"23vh",overflow:"hidden"}}>
         {

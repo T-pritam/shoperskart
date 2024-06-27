@@ -2,6 +2,8 @@
 import { useState,useEffect } from "react"
 import { useRouter } from "next/navigation"
 import axios from "axios"
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
 import BasicExample from "./cards"
 import '../../../static/css/home.css'
 
@@ -10,14 +12,17 @@ export default function Categories(){
     const [categories,setCategories] = useState<unknown[]>([])
     const [product,setProduct] = useState<unknown[]>([])
     const [catId,setCatId] = useState("")
+    const [page,setPage] = useState(1)
+
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     useEffect(() => {
         const sendotp = async() => {
-                const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"products/getall?limit=25&page=4")
+                const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`products/getall?limit=20&page=${(page + 5) % 9}`)
                 setProduct(a.data)                
         }
         sendotp()
-    },[])
+    },[page])
 
 
     useEffect(() => {
@@ -72,10 +77,6 @@ export default function Categories(){
 
     return <div style={{margin:"50px 1vw 1vw 1vw"}}>
         <h1>Categories</h1>
-        <h4 onClick={async () => {
-            const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"products/getall")
-                setProduct(a.data)
-        }}>All</h4>
         <div className="optiona" style={{width:"100%",height:"23vh",overflow:"hidden"}}>
         {
             
@@ -124,6 +125,54 @@ export default function Categories(){
         
 
     <BasicExample product = {product} />
+
+<div className='pageouter'>
+  <div className='pageinner'>
+      <p className='prevnexttext'>Page {page} of 9</p>
+      <button className='prevnextbtn' onClick={() => {
+          setPage(page == 1 ? 1 : page -1)}
+      }>PREVIOUS</button>
+    {numbers.map((item) => (
+              <div style={{display:"inline-block"}}>
+                {
+                page == item ? 
+                (<button key={item} className='serialnumberbtn' style={{backgroundColor:"#0b8011",color:"white"}}>{item}</button>) :
+                (<button key={item} className='serialnumberbtn' onClick={() => {
+                  setPage(item)
+                }}>{item}</button>)
+              }
+              </div>
+              
+            ))}
+          <button className='prevnextbtn' onClick={() => {
+            setPage(page == 9 ? 9 : page +1 )
+          }}>NEXT</button>
+</div>
+
+
+<div className="smallpageinnerdiv">
+  <MdKeyboardArrowLeft className='smallprevnextbtn' color="#0b8011" size={"40px"} onClick={() => {
+          setPage(page == 1 ? 1 : page -1)}
+      } />
+      {numbers.map((item) => (
+              <div style={{display:"inline-block"}}>
+                {
+                page == item ? 
+                (<button key={item} className='serialnumberbtn' style={{backgroundColor:"#0b8011",color:"white"}}>{item}</button>) :
+                (<button key={item} className='serialnumberbtn' onClick={() => {
+                  setPage(item)
+                }}>{item}</button>)
+              }
+              </div>
+              
+            ))}
+      
+      
+    <MdKeyboardArrowRight className="smallprevnextbtn" color="#0b8011" size={"40px"} onClick={() => {
+      setPage(page == 9 ? 9 : page +1 )}} />
+
+</div>
+</div>
     
     </div>
 }

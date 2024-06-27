@@ -2,9 +2,53 @@
     display:inline-block;
     box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
 }
+.homemaindiv{
+    width: 1250px;
+    max-height: 225px;
+    position: relative;
+    margin: 2vw 0 0 0 ;
+}
+
+.pageouter{
+    position: relative;
+    top: 1070px;
+    height: 80px;
+}
+.pageinner{
+    width: 900px;
+    height: 60px;
+    background-color: #ffffff;
+    margin: 0 150px 0 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.prevnextbtn{
+margin: 0 30px;
+border: none;
+font-weight: 500;
+color: #0b8011;
+font-size: 22px;
+background-color: white;
+}
+.prevnexttext{
+    display: inline-block;
+    margin-left: 8px;
+    margin-right: 40px;
+}
+.serialnumberbtn{
+    font-weight: 400;
+    margin: 3px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    color: #000;
+    font-size: 22px;
+    background-color: white;
+    border-radius: 40px;
+}
+
 
 .cardd{
-    width: 14rem;
+    width: 225px;
     margin:10px;
     padding: 7px;
     position: relative;
@@ -17,7 +61,7 @@
 
 
 .image{
-    height: 12rem;
+    height: 180px;
     cursor: pointer;
     margin-bottom: 8px;
 }
@@ -28,7 +72,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 13rem;
+    width: 200px;
 }
 .homecardrating{
     font-size: 13px;
@@ -98,32 +142,90 @@
     display: flex;
     justify-content: space-around;
 }
+.cardbodyhomepage {
+    text-align:left ;
+    cursor:pointer;
+}
 .reiewbox ,.reviewcmtbox{
     border: 0.8px solid #ddd;
     padding:25px;
 }
+.smallpageinnerdiv{
+    display: none;
+}
 
 @media (max-width: 500px){
+
+    .pageouter{
+        width: 100vw;
+        height: 30vh;
+        background-color: white;
+        position: relative;
+        height: 80px;
+        top: 380vh;
+        display: block;
+        padding: 2vh 0;
+    }
+    .smallpageinnerdiv{
+        text-align: center;
+        width: 100vw;
+        display: block;
+        height: 7vh;
+        background-color: white;
+        z-index: 1111
+    }
+    .serialnumberbtn{
+        width: 25px;
+        height: 25px;
+        font-size: 17px;
+    }
+    .prevnexttext{
+        text-align: center;
+
+    }
+    .pageinner{
+        display: none;
+    }
+
+    .homemaindiv{
+        width: 100vw;
+        margin: 2vw 0 0 0;
+    }
+    .boxShadow{
+        display:inline-block;
+        border: 0.4px solid #8e8d8d7c;
+    }
+    .cardbodyhomepage{
+        position: absolute;
+        right: -2px;
+        bottom: 5px;
+    }
     .cardd{
-        height: 16vh;
+        height: 38vh;
         flex-direction: row;
-        width: 95vw;
+        width: 44vw;
         padding: 5px;
     }
     .image{
-        width: 13vh;
-        height: 13vh;
+        width: 22vh;
+        height: 21vh;
         margin-right: 17px;
+        position: relative;
+        top: -11px;
+        right: 5px;
     }
     .titletext{
-        width: 14rem;
-        font-size: 16px;
+        width: 46vw;
+        font-size: 13px;
+
     }
     .wishlisticon{
-        display: none;
+        display: block;
+        position: absolute;
+        top: -20vh;
     }
     .addtocart{
-        display: none;
+        display: block;
     }
     .diba{
         display: block;
@@ -171,7 +273,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
   }
-
+  
   .carousel-wrapper {
     display: flex;
     transition: transform 0.3s ease-in-out;

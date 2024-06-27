@@ -304,7 +304,6 @@
 
 .fullImage {
     max-width: 50%;
-
     border-radius: 10px
 }
 
@@ -315,6 +314,13 @@
       flex: 0 0 100%;
       height: auto;
       position: static;
+  }
+  .modalContent{
+    width: 80vw;
+    height: 40vh;
+  }
+  .fullImage{
+    max-width: 100%;
   }
   .rightt{
     margin-left: 0;

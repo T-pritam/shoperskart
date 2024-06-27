@@ -72,8 +72,7 @@ const addtowish = async(index : any,id:any) => {
 
 return <div>
 
-<div style={{width:"100%",maxHeight:"15rem",position: "relative",margin:"2vw 0 0 0",textAlign:"center"
-}}>
+<div className='homemaindiv' >
 
 
 
@@ -84,10 +83,10 @@ return <div>
   <img src={prod.thumbnail} className="image" alt="..." onClick={ () => {
   router.push('/product/'+prod._id)}} />
   
-<div className="card-body" style={{textAlign:"left",cursor:"pointer"}} onClick={ () => {
+<div className='cardbodyhomepage' onClick={ () => {
   router.push('/product/'+prod._id)}}>
 <div className='divpricebtn'>
-  <div><p className="card-title titletext prodtitle">{prod.title}</p></div>
+<p className="card-title titletext prodtitle">{prod.title}</p>
     <div>
 
 
@@ -142,7 +141,7 @@ return <div>
         
         <div>
           <p className="card-title diba" >&#8377;{new Intl.NumberFormat('en-IN').format(Math.floor(prod.price-(prod.price*prod.discountPercentage)/100))}</p>
-          <p className="card-title dibc" >&#8377;{new Intl.NumberFormat('en-IN').format(prod.price)}</p>
+          <p className="card-title dibc" >&#8377;{new Intl.NumberFormat('en-IN').format(Math.floor(prod.price))}</p>
           <p className="dibp" >{Math.ceil(prod.discountPercentage) }% off</p>
         </div>
           
@@ -152,6 +151,8 @@ return <div>
       ))}
 
 </div>
+
+
 
 </div>
 

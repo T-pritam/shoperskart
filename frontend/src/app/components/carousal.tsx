@@ -10,7 +10,7 @@ import { IoStarSharp } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa6";
 import './a.css'
 import { toast } from 'sonner';
-import Product from '../product/[id]/page';
+
 
 
 const MyCarousel = (props : any) => {

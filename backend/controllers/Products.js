@@ -3,8 +3,10 @@ const Brand = require('../models/Brand')
 
 exports.getall = async (req, res) => {
     try {
+        if(req.query.page == 0){
+            req.query.page = 9
+        }
         const filter={}
-        const sort={}
         let skip=0
         let limit=0
         if(req.query.brand){
@@ -31,8 +33,8 @@ exports.getall = async (req, res) => {
             skip=pageSize*(page-1)
             limit=pageSize
         }
-        const totalDocs=await Product.find(filter).sort(sort).populate("category").countDocuments().exec()
-        const results=await Product.find(filter).sort(sort).populate("category").skip(skip).limit(limit).exec()
+        const totalDocs=await Product.find(filter).populate("category").countDocuments().exec()
+        const results=await Product.find(filter).populate("category").skip(skip).limit(limit).exec()
 
         res.set("X-Total-Count",totalDocs)
 
