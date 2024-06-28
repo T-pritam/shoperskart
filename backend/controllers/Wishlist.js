@@ -5,7 +5,6 @@ exports.create=async(req,res)=>{
     try {
         req.body.user = onlyToken(req.body.user)
         const total = await Wishlist.find({user : req.body.user,product : req.body.product}).countDocuments().exec()
-        console.log("total",total)
         if(total == 0){
             const created=await new Wishlist(req.body).populate({path:"product",populate:["category"]})
             await created.save()
@@ -87,9 +86,6 @@ exports.getByUserIdInList=async(req,res)=>{
         const arr = []
         result.forEach((prod) =>(
             arr.push(prod.product.slNo)
-        ))
-        result.forEach((prod) =>(
-            console.log(prod.product.slNo)
         ))
 
         res.status(200).json({wishlist : arr,total : totalDocs})

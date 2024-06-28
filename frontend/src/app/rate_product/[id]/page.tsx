@@ -170,6 +170,7 @@ export default function RateProduct({params}:
                             else{
                                 await axios.post(process.env.NEXT_PUBLIC_BASE_URL+"review/",{
                                 user : cookies.get("access_token"),
+                                name : cookies.get("name"),
                                 product : params.id,
                                 rating: rating,
                                 comment: reviewText

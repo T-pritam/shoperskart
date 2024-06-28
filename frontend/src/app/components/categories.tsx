@@ -133,7 +133,7 @@ export default function Categories(){
           setPage(page == 1 ? 1 : page -1)}
       }>PREVIOUS</button>
     {numbers.map((item) => (
-              <div style={{display:"inline-block"}}>
+              <div key={item} style={{display:"inline-block"}}>
                 {
                 page == item ? 
                 (<button key={item} className='serialnumberbtn' style={{backgroundColor:"#0b8011",color:"white"}}>{item}</button>) :
