@@ -13,7 +13,6 @@ exports.getAll=async(req,res)=>{
 
 exports.update=async(req,res)=>{
     try {
-        const to = Category.findById("664edb3a72080a83b4785e38")
         const filter={}
         filter.category={$in:req.query.category}
         const totalDocs=await Product.find(filter).populate("brand")
