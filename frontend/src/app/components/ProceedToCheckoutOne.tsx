@@ -11,9 +11,12 @@ export default function ProceedToCheckoutOne(props: any) {
     const cookies = new Cookies()
     const router = useRouter()
 
-    const [product, setProduct] = useState<unknown[]>([])
+    
+
+    const [product, setProduct] = useState()
+    const [img,setImg] = useState("")
+    const [title,setTitle] = useState("")
     const [address, setAddress] = useState<unknown[]>([])
-    const [cartprod, setCartprod] = useState<unknown[]>([])
     const [totalProducts, setTotalProducts] = useState(0)
     const [totalprice, setTotalPrice] = useState(0)
     const [items, setItems] = useState(0)
@@ -32,6 +35,8 @@ export default function ProceedToCheckoutOne(props: any) {
                 const addresses = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + "address/user/" + cookies.get("access_token"))
                 setAddress(addresses.data)
                 setProduct(prod.data)
+                setImg(prod.data.thumbnail)
+                setTitle(prod.data.title)
                 setTotalProducts(1)
                 setItems(1)
                 setPrice(Math.floor(prod.data.price - (prod.data.price * prod.data.discountPercentage) / 100))
@@ -99,10 +104,10 @@ return <div style={{ width: "100%", height: "100%", padding: " 4vw 5vw 5vw 5vw" 
 
                     <div className="checkoutdiv" style={{ width: '100%', border: "1px solid black", margin: "1vh", borderRadius: "8px" }}>
                         <div className="imgimg" style={{ display: "inline-block", overflow: "hidden", height: "15vh" }}>
-                            <img src={product.thumbnail} className="imgim" alt="" />
+                            <img src={img} className="imgim" alt="" />
                         </div>
                         <div className="checkouttextone">
-                            <h4 className="checkouttit">{product.title}</h4>
+                            <h4 className="checkouttit">{title}</h4>
                             <div className="checkoutflex">
                                 <h6 className="checkh6">Quantity : 1</h6>
                                 <h6 className="checkh6">Price : &#8377;{new Intl.NumberFormat('en-IN').format(Math.floor(price))}
