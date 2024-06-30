@@ -25,7 +25,6 @@ exports.signup=async(req,res)=>{
         const existingUser=await User.findOne({email:req.body.email})
         
         // if user already exists
-        console.log(existingUser)
         if(existingUser && existingUser.isVerified == false){
             return res.status(400).json({"message":"User already exists but Email not verified"})
         }
@@ -109,7 +108,6 @@ exports.verifyOtp=async(req,res)=>{
         if(!isValidUserId){
             return res.status(404).json({message:'User not Found, for which the otp has been generated'})
         }
-        console.log(isValidUserId)
 
         // checks if otp exists by that user id
         const isOtpExisting=await OTP.findOne({user:isValidUserId._id})
@@ -168,7 +166,6 @@ exports.forgotPassword=async(req,res)=>{
 
         // hashes the token
         const hashedToken=await bcrypt.hash(passwordResetToken,10)
-        console.log(isExistingUser)
 
         // saves hashed token in passwordResetToken collection
         newToken=new PasswordResetToken({user:isExistingUser._id,token:hashedToken,expiresAt:Date.now() + 120000 })

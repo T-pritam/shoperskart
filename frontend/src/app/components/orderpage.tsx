@@ -2,7 +2,6 @@ import axios from "axios"
 import { useRouter } from "next/navigation"
 import OrderDetails from "../order_details/[id]/page"
 import "../../../static/css/order.css"
-import { DiVim } from "react-icons/di"
 
 export default function OrderPage(props:any){
     const router = useRouter()

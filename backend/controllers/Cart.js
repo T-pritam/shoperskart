@@ -36,7 +36,6 @@ exports.getByUserId=async(req,res)=>{
         req.params.id = onlytoken(req.params.id)
         const {id}=req.params
         const result = await Cart.find({ user: id }).populate("product");
-        console.log(result)
         res.status(200).json(result)
     } catch (error) {
         console.log(error);

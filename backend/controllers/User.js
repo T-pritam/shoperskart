@@ -11,7 +11,7 @@ exports.getbyid = async (req,res) =>{
 exports.getbymail = async (req,res) =>{
     try{
         const existingUser=await User.findOne({email:req.body.email})
-    return res.status(200).json(existingUser._id)
+        return res.status(200).json(existingUser._id)
     }
     catch (error) {
         res.status(500).json({message:'InValid Email Try Again'})

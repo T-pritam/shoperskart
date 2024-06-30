@@ -11,12 +11,12 @@ const seedData=async()=>{
     try {
         await connectToDB()
         console.log('Seed [started] please wait..');
-        await seedCategory()
+        // await seedCategory()
         await seedProduct()
-        await seedAddress()
-        await seedUser()
+        // await seedAddress()
+        // await seedUser()
         await seedReview()
-        await seedOrder()
+        // await seedOrder()
 
         console.log('Seed completed..');
     } catch (error) {

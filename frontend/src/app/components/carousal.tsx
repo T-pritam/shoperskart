@@ -118,6 +118,7 @@ return <div style={{margin : "50px 0 0 0"}}>
                           product : props.id,
                       });
                       setIsWishlisted(true)
+                      toast.success("Product added to wishlist")
                       }
                       else{
                         router.push("/login")
@@ -128,6 +129,7 @@ return <div style={{margin : "50px 0 0 0"}}>
                     <FaHeart className='btnofwish' size={'20px'} color='#ff1111' onClick={async() => {
                         await axios.delete(process.env.NEXT_PUBLIC_BASE_URL+`wishlist/${props.id}/${cookies.get("access_token")}`);
                         setIsWishlisted(false)
+                        toast.success("Product removed from wishlist")
                     }}/>
                   </div>
               }
@@ -160,6 +162,7 @@ return <div style={{margin : "50px 0 0 0"}}>
         product : props.product._id,
       })
       router.push("/cart")
+      toast.success("Product added to cart")
       }
       else{
         router.push("/login")

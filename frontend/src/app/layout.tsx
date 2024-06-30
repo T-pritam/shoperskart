@@ -11,7 +11,7 @@ export default function RootLayout({
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"></link>
         {children}
-        <Toaster position='top-right' expand={true} duration={3000} richColors/>
+        <Toaster position='top-right' expand={true} duration={1500} richColors/>
       </body>
     </html>
   );

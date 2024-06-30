@@ -40,7 +40,7 @@ export default function WishlistComponent(props:any){
       try{
         
         const remove = await axios.delete(process.env.NEXT_PUBLIC_BASE_URL+"wishlist/"+props.product._id)
-        toast.error("Product Removed from Wishlist")
+        toast.success("Product removed from wishlist")
         props.changeWishlist()  
       
     }

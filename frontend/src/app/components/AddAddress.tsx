@@ -36,6 +36,7 @@ export default function AddAddress(){
             type : addresstype,
         })
         toast.success("Address Added")
+        router.refresh()
         }
         catch(err:any){
             setErr(err.response.data.message)  
@@ -59,12 +60,11 @@ export default function AddAddress(){
 
 
     return <>
-<form onSubmit={saveAddress}>
     <div className="addouter">
    <div className="addcontainer">
     
     <h4>Add New Address</h4> 
-    <input type="text"  onChange={(e) => setUser(e.target.value)} className="addname" placeholder="User Name" required/>
+    <input type="text"  onChange={(e) => setUser(e.target.value)} className="addname" placeholder="Name" required/>
     <br />
 
     <input type="text"  onChange={(e) => setStreet(e.target.value)} className="addstreet" placeholder="Street" required/>
@@ -101,11 +101,9 @@ export default function AddAddress(){
     </select>
     </div>
     </div>
-  <button type="submit" className="addsavebtn b btn btn-dark"  style={{backgroundColor:"#467546"}}>Save Address</button>
+  <button type="submit" className="addsavebtn b btn btn-dark"  style={{backgroundColor:"#467546"}} onClick={saveAddress}>Save Address</button>
     </div>
    </div>
-
-</form>
 
     {
         address.map((prod:any) => (
@@ -134,6 +132,7 @@ export default function AddAddress(){
                     }} >Edit</button> 
                     <button  type="button" className="addallbtndel" id = "cancelbtnnn" onClick={async() => {
                         await axios.delete(process.env.NEXT_PUBLIC_BASE_URL+"address/"+prod._id)
+                        toast.success("Address Deleted")
                         location.reload()
                     }}>Delete</button> 
 

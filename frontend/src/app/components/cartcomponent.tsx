@@ -52,8 +52,7 @@ export default function CartComponent(props:any){
             <h5 className="qty">{quantity} </h5> 
             <button type="button" className="btn btn-dark plusbtn" style={{backgroundColor:"#ddd",color:"black",border:"0"}} onClick={() => {
               props.changeAmount(1 * props.product.product.price-(props.product.product.price*props.product.product.discountPercentage)/100)
-              
-              setQuantity(quantity+1)
+              setQuantity(quantity+1 == 6 ? 5 : quantity + 1)
             }}>+</button>
             </div>
             <div className="rmvbtn">
@@ -63,6 +62,7 @@ export default function CartComponent(props:any){
                 props.changeCart(props.product._id)
                 props.changeAmount( -1 * props.product.product.price)
                 props.changeCount()
+                toast.success("Product removed from cart")
               }}>Remove</button> 
             </div>
             <div className="savetocartbtn">
