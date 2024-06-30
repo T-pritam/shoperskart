@@ -132,8 +132,9 @@ export default function AddAddress(){
                     }} >Edit</button> 
                     <button  type="button" className="addallbtndel" id = "cancelbtnnn" onClick={async() => {
                         await axios.delete(process.env.NEXT_PUBLIC_BASE_URL+"address/"+prod._id)
+                        router.refresh()
                         toast.success("Address Deleted")
-                        location.reload()
+                        
                     }}>Delete</button> 
 
                     </div>
