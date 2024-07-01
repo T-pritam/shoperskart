@@ -75,6 +75,7 @@ exports.sendMail = async(receiverEmail,resetLink,name) => {
                 <p>Hello ${name},</p>
                 <p>You requested to reset your password. Click the link below to reset it:</p>
                 <a href="${resetLink}" class="reset-link">Reset Password</a>
+                <p>This Link is valid for 10 minutes.</p>
                 <p>If you didn't request this, please ignore this email.</p>
             </div>
             <div class="footer">

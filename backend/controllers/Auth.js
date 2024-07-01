@@ -88,7 +88,7 @@ exports.resend_otp = async(req,res) => {
         await OTP.deleteMany({user:existingUser})
         const otp = generateOTP()
         const hashedOtp = await bcrypt.hash(otp,10)
-        const newOtp = OTP.create({user:existingUser._id,otp:hashedOtp,expiresAt:Date.now()+parseInt(300000)})
+        const newOtp = OTP.create({user:existingUser._id,otp:hashedOtp,expiresAt:Date.now()+parseInt(600000)})
         await sendOTP(existingUser.email,otp)
         return res.status(201).json({"message" : "OTP sent"})
     }
@@ -168,7 +168,7 @@ exports.forgotPassword=async(req,res)=>{
         const hashedToken=await bcrypt.hash(passwordResetToken,10)
 
         // saves hashed token in passwordResetToken collection
-        newToken=new PasswordResetToken({user:isExistingUser._id,token:hashedToken,expiresAt:Date.now() + 120000 })
+        newToken=new PasswordResetToken({user:isExistingUser._id,token:hashedToken,expiresAt:Date.now() + 600000 })
         await newToken.save()
 
         await sendMail(isExistingUser.email,`${process.env.URL}reset-password/${isExistingUser._id}/${passwordResetToken}`,isExistingUser.firstname)

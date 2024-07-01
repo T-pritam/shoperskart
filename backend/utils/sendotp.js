@@ -72,7 +72,7 @@ exports.sendOTP = async(receiverEmail,otp) => {
                     <h2>OTP Verification</h2>
                     <p>Please use the following One-Time Password (OTP) to verify your account:</p>
                     <div class="otp-code">${otp}</div>
-                    <p>This OTP is valid for 5 minutes.</p>
+                    <p>This OTP is valid for 10 minutes.</p>
                 </div>
                 <div class="footer">
                     <p>If you did not request this verification, please ignore this email.</p>
