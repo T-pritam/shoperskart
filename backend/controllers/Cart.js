@@ -77,8 +77,6 @@ exports.deleteByUserId=async(req,res)=>{
 
 }
 
-
-
 exports.getByUserIdInList=async(req,res)=>{
     try {
         req.params.id = onlytoken(req.params.id)
@@ -94,7 +92,6 @@ exports.getByUserIdInList=async(req,res)=>{
         return res.status(500).json({message:'Error fetching cart items, please trying again later'})
     }
 }
-
 
 exports.getbyUserAndProductId = async(req,res) =>{
     req.params.user = onlytoken(req.params.user)
