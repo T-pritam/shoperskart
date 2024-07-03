@@ -18,7 +18,7 @@ export default function Categories(){
 
     useEffect(() => {
         const sendotp = async() => {
-                const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`products/getall?limit=20&page=${(page + 5) % 9}`)
+                const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`products/getall?limit=20&page=${(page + 3) % 9}`)
                 setProduct(a.data)                
         }
         sendotp()
