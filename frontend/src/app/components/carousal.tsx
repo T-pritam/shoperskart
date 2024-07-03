@@ -195,7 +195,7 @@ return <div style={{margin : "50px 0 0 0"}}>
          <p className="mt-0 mb-0" style={{backgroundColor:"orange",width:"50px",borderRadius:"6px",padding:"0 0 0 8px",color:"white",display:"inline-block"}}> {ratingAvg.toFixed(1)}<IoStarSharp style={{marginBottom:"4px"}} size={"15px"}  color="white"/></p> 
          : <p className="mt-0 mb-0" style={{backgroundColor:"green",width:"50px",borderRadius:"6px",padding:"0 0 0 8px",color:"white",display:"inline-block"}}> {ratingAvg.toFixed(1)}<IoStarSharp style={{marginBottom:"4px"}} size={"15px"}  color="white"/></p> 
        }
-       <p className="mt-0 mb-0" style={{display:"inline-block",marginLeft:"10px"}}>{props.product.totalratings} Ratings & {props.product.totalreviews} Reviews</p>
+       <p className="mt-0 mb-0" style={{display:"inline-block",marginLeft:"10px"}}>{total} Ratings & {total - totalRatings} Reviews</p>
 
        </div>
        }
