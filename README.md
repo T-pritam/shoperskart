@@ -3,8 +3,7 @@
 
 Welcome to ShoppersKart, a modern e-commerce platform built with the MERN stack and Next.js. This platform offers a comprehensive set of features to provide a seamless shopping experience, including authentication, product management, and user interactivity.
 
-![ShopersKart Image](https://github.com/T-pritam/shoperskart/assets/103520152/fb265c5a-076b-429f-bd5d-b472aa917006)
-
+![ShopersKart Image](https://github.com/T-pritam/shoperskart/assets/103520152/872519e6-7274-44c4-a8ab-9b39ad137331)
 
 
 ## Features
