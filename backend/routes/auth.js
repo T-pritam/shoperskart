@@ -30,19 +30,23 @@ Authrouter.get('/google/callback',
 	  // Access user object and tokens from req.user
       res.cookie("access_token",req.user.token, { 
 		httpOnly: false,  
-		secure: false,   
+		secure: true,
+      	sameSite: 'None',  
 	  })
       res.cookie("name",req.user.firstName, { 
 		httpOnly: false,  
-		secure: false,   
+		secure: true,
+      	sameSite: 'None',  
 	  })
       res.cookie("profileImage",req.user.profileImage, { 
 		httpOnly: false,  
-		secure: false,   
+		secure: true,
+      	sameSite: 'None',  
 	  })
       res.cookie("login","true", { 
 		httpOnly: false,  
-		secure: false,   
+		secure: true,
+      	sameSite: 'None',  
 	  })
 	  console.log("All data of req.user : ",req.user)
 	  // Successful authentication, redirect home.
