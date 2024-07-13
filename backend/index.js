@@ -19,16 +19,9 @@ require('dotenv').config();
 
 const app = express()
 
-const corsOptions = {
-	origin: process.env.URL,
-	credentials: true,
-	optionsSuccessStatus: 200,
-  };
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(express.json())
 app.use(passport.initialize());
-
-console.log(process.env.URL)
 
 app.use(express.static(path.resolve('./public')))
 app.use(cookieparser())

@@ -30,7 +30,7 @@ export default function SigninForm() {
 
   const googleAuth = () => {
     window.open(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}auth/google`,
       "_self"
     );
   };

@@ -169,10 +169,10 @@ exports.forgotPassword=async(req,res)=>{
         newToken=new PasswordResetToken({user:isExistingUser._id,token:hashedToken,expiresAt:Date.now() + 600000 })
         await newToken.save()
 
-        await sendMail(isExistingUser.email,`${process.env.URL}reset-password/${isExistingUser._id}/${passwordResetToken}`,isExistingUser.firstname)
+        await sendMail(isExistingUser.email,`${process.env.URL}/reset-password/${isExistingUser._id}/${passwordResetToken}`,isExistingUser.firstname)
 
 
-        const link = `${process.env.URL}reset-password/${isExistingUser._id}/${passwordResetToken}`
+        const link = `${process.env.URL}/reset-password/${isExistingUser._id}/${passwordResetToken}`
         res.status(200).json({message:`Password Reset link sent to ${isExistingUser.email}`,"Link" : link})
 
     } catch (error) {
