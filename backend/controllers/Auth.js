@@ -232,19 +232,6 @@ exports.logout=async(req,res)=>{
     }
 }
 
-exports.google = (passport.authenticate('google', { session: false, scope: ['profile', 'email'] }))
-
-exports.googleoAuth = (
-    passport.authenticate('google', { session: false, failureRedirect: `http://localhost:3000/login` }),
-	(req, res) => {
-  
-	  // Access user object and tokens from req.user
-        console.log()
-	  // Successful authentication, redirect home.
-	  res.redirect(`http://localhost:3000/profile`);
-    }
-)
-
 exports.loginfailed = (req,res) => {
         res.status(401).json({
             error: true,

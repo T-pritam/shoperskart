@@ -18,7 +18,7 @@ export default function Categories(){
 
     useEffect(() => {
         const sendotp = async() => {
-                const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`products/getall?limit=20&page=${(page + 3) % 9}`)
+                const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`products/getall?limit=20&page=${(page + 5) % 9}`)
                 setProduct(a.data)                
         }
         sendotp()
@@ -129,9 +129,14 @@ export default function Categories(){
 <div className='pageouter'>
   <div className='pageinner'>
       <p className='prevnexttext'>Page {page} of 9</p>
-      <button className='prevnextbtn' onClick={() => {
+      {
+              page == 1 ? <div style={{marginLeft:"174px",display:"inline-block"}}></div> :  <button className='prevnextbtn' onClick={() => {
+                setPage(page == 1 ? 1 : page -1)}
+            }>PREVIOUS</button>
+            }
+      {/* <button className='prevnextbtn' onClick={() => {
           setPage(page == 1 ? 1 : page -1)}
-      }>PREVIOUS</button>
+      }>PREVIOUS</button> */}
     {numbers.map((item) => (
               <div key={item} style={{display:"inline-block"}}>
                 {
@@ -144,9 +149,14 @@ export default function Categories(){
               </div>
               
             ))}
-          <button className='prevnextbtn' onClick={() => {
+            {
+              page == 9 ? <></> :  <button className='prevnextbtn' onClick={() => {
+                setPage(page == 9 ? 9 : page +1 )
+              }}>NEXT</button>
+            }
+          {/* <button className='prevnextbtn' onClick={() => {
             setPage(page == 9 ? 9 : page +1 )
-          }}>NEXT</button>
+          }}>NEXT</button> */}
 </div>
 
 
