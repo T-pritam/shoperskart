@@ -14,9 +14,17 @@ Authrouter.post("/reset-password",authController.resetPassword)
 Authrouter.get("/logout",authController.logout)
 
 Authrouter.get('/google',
+	(req, res, next) => {
+	  console.log('Initiating Google OAuth flow');
+	  next();
+	},
 	passport.authenticate('google', { session: false, scope: ['profile', 'email'] }));
   
 Authrouter.get('/google/callback',
+	(req, res, next) => {
+	  console.log('Google OAuth callback received');
+	  next();
+	},
 	passport.authenticate('google', { session: false, failureRedirect: `${process.env.URL}/login` }),
 	(req, res) => { 
 	  // Access user object and tokens from req.user

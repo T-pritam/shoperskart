@@ -46,6 +46,8 @@ export default function Loginhandle(){
               cookies.remove("access_token")
               cookies.set("access_token",a.data.token)
               cookies.set("name",a.data.secureInfo.name)
+              cookies.set("profileImage",a.data.secureInfo.profileImage)
+              
               route.push("/")
               toast.success("Logged in Successfully",{
                 duration : 1000
