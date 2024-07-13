@@ -28,6 +28,8 @@ app.use(cors(corsOptions))
 app.use(express.json())
 app.use(passport.initialize());
 
+console.log(process.env.URL)
+
 app.use(express.static(path.resolve('./public')))
 app.use(cookieparser())
 app.use(express.json())
