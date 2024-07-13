@@ -32,6 +32,7 @@ Authrouter.get('/google/callback',
       res.cookie("name",req.user.firstName)
       res.cookie("profileImage",req.user.profileImage)
       res.cookie("login","true")
+	  console.log("All data of req.user : ",req.user)
 	  // Successful authentication, redirect home.
 	  res.redirect(`${process.env.URL}`);
 	});

@@ -16,6 +16,7 @@ passport.use(new GoogleStrategy({
     try {
 		let user = await User.findOne({ email: profile.emails[0].value })
 		if (user == null) {
+			console.log("Inside of Try")
 			const pass = profile.id.substring(profile.id.length-6) + profile.name.givenName.substring(profile.name.givenName.length -2)
 			const hashedPassword=await bcrypt.hash(pass,10)
 			const createdUser=new User({
@@ -31,6 +32,7 @@ passport.use(new GoogleStrategy({
 		let existingUser = await User.findOne({ email: profile.emails[0].value });
 		const secureInfo=sanitize(existingUser)
 		const token=generateToken(secureInfo)
+		console.log("secureInfo : ",secureInfo,token)
 		return done(null, {"token" : token,"firstName" : existingUser.firstname,"profileImage" : existingUser.profileImage});
 	} catch (err) {
 		console.log("err" , err)
