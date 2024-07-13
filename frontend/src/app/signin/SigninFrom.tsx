@@ -28,6 +28,13 @@ export default function SigninForm() {
     setText(!text);
   };
 
+  const googleAuth = () => {
+    window.open(
+      `http://localhost:8000/auth/google`,
+      "_self"
+    );
+  };
+
   const passwordtextC = () => {
     setTextC(!textC);
   };
@@ -208,6 +215,8 @@ export default function SigninForm() {
                     <p>
                       Already have an account <a href="/login">Login</a>{" "}
                     </p>
+
+                    <button onClick={googleAuth}>Login with google</button>
                   </div>
                 </div>
               </div>

@@ -23,7 +23,11 @@ const userSchema = new mongoose.Schema({
     },
     password:{
         type : String,
-        required: true
+        required: true,
+    },
+    profileImage : {
+        type: String,
+        required: false,
     },
     isVerified:{
         type : Boolean,

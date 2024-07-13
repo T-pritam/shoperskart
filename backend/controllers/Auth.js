@@ -6,9 +6,7 @@ const {sendOTP} = require("../utils/sendotp")
 const generateToken = require('../utils/generateToken')
 const sanitize = require('../utils/sanitize')
 const generateOTP = require('../utils/generateOTP')
-const cookieParser = require('cookie-parser')
-const Cookie = require('universal-cookie')
-const decode = require('../utils/decodeToken')
+const passport = require("passport")
 const PasswordResetToken = require('../models/passwordResetToken')
 
 exports.getall = async(req,res) => {
@@ -232,4 +230,37 @@ exports.logout=async(req,res)=>{
     } catch (error) {
         console.log(error);
     }
+}
+
+exports.google = (passport.authenticate('google', { session: false, scope: ['profile', 'email'] }))
+
+exports.googleoAuth = (
+    passport.authenticate('google', { session: false, failureRedirect: `http://localhost:3000/login` }),
+	(req, res) => {
+  
+	  // Access user object and tokens from req.user
+        console.log()
+	  // Successful authentication, redirect home.
+	  res.redirect(`http://localhost:3000/profile`);
+    }
+)
+
+exports.loginfailed = (req,res) => {
+        res.status(401).json({
+            error: true,
+            message: "Log in failure",
+        });
+}
+
+exports.loginsuccess = (req,res) => {
+
+        if (req.user) {
+            res.status(200).json({
+                error: false,
+                message: "Successfully Loged In",
+                user: req.user,
+            });
+        } else {
+            res.status(403).json({ error: true, message: "Not Authorized" });
+        }
 }

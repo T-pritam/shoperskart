@@ -21,6 +21,13 @@ export default function Loginhandle(){
         setText(!text)
     }
 
+    const googleAuth = () => {
+      window.open(
+        `http://localhost:8000/auth/google`,
+        "_self"
+      );
+    };
+
     const handleLogin = async () => {
 
         setIsLoading(true)
@@ -92,13 +99,15 @@ export default function Loginhandle(){
     
     
                   <div className="mt-1 pt-2 mb-3">
-                    <input data-mdb-ripple-init className="btn btn-primary btn-lg" type={"submit"} value={isloading ? "Loading" :"Submit"} onClick={handleLogin} />
+                    <input data-mdb-ripple-init className="btn btn-primary btn-lg" type={"submit"} value={isloading ? "Loading" :"Login"} onClick={handleLogin} />
                   </div>
     
                   <div style={{display:"flex",justifyContent:"space-between"}}>
                   <p>Don't have an account <a href="/signin">Signin</a> </p>
                   <a href="/forgot-password">Reset Password</a>
                   </div>
+
+                  <button onClick={googleAuth}>Login with google</button>
     
             </div>
           </div>

@@ -1,6 +1,7 @@
 const express = require('express')
 const Authrouter=express.Router()
 const authController=require("../controllers/Auth")
+const passport = require('passport')
 
 Authrouter.get('/getall',authController.getall)
 Authrouter.get('/deleteall',authController.deleteall)
@@ -11,6 +12,21 @@ Authrouter.post('/Verify-otp',authController.verifyOtp)
 Authrouter.post("/forgot-password",authController.forgotPassword)
 Authrouter.post("/reset-password",authController.resetPassword)
 Authrouter.get("/logout",authController.logout)
+
+Authrouter.get('/google',
+	passport.authenticate('google', { session: false, scope: ['profile', 'email'] }));
+  
+Authrouter.get('/google/callback',
+	passport.authenticate('google', { session: false, failureRedirect: `${process.env.URL}/login` }),
+	(req, res) => { 
+	  // Access user object and tokens from req.user
+      res.cookie("access_token",req.user.token)
+      res.cookie("name",req.user.firstName)
+      res.cookie("profileImage",req.user.profileImage)
+      res.cookie("login","true")
+	  // Successful authentication, redirect home.
+	  res.redirect(`${process.env.URL}`);
+	});
 
 
 
