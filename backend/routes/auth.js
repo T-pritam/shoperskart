@@ -28,10 +28,22 @@ Authrouter.get('/google/callback',
 	passport.authenticate('google', { session: false, failureRedirect: `${process.env.URL}/login` }),
 	(req, res) => { 
 	  // Access user object and tokens from req.user
-      res.cookie("access_token",req.user.token)
-      res.cookie("name",req.user.firstName)
-      res.cookie("profileImage",req.user.profileImage)
-      res.cookie("login","true")
+      res.cookie("access_token",req.user.token, { 
+		httpOnly: false,  
+		secure: false,   
+	  })
+      res.cookie("name",req.user.firstName, { 
+		httpOnly: false,  
+		secure: false,   
+	  })
+      res.cookie("profileImage",req.user.profileImage, { 
+		httpOnly: false,  
+		secure: false,   
+	  })
+      res.cookie("login","true", { 
+		httpOnly: false,  
+		secure: false,   
+	  })
 	  console.log("All data of req.user : ",req.user)
 	  // Successful authentication, redirect home.
 	  res.redirect(`${process.env.URL}`);
