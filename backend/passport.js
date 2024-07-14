@@ -3,6 +3,7 @@ const passport = require('passport')
 const User = require('./models/user')
 const generateToken = require('./utils/generateToken')
 const sanitize = require('./utils/sanitize')
+const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 require('dotenv').config()
 
@@ -12,11 +13,9 @@ passport.use(new GoogleStrategy({
 	callbackURL: `${process.env.BACKEND_URL}/auth/google/callback`
 },
   async (accessToken, refreshToken, profile, done) => {
-	console.log("Profile  :  ",profile)
     try {
 		let user = await User.findOne({ email: profile.emails[0].value })
 		if (user == null) {
-			console.log("Inside of Try")
 			const pass = profile.id.substring(profile.id.length-6) + profile.name.givenName.substring(profile.name.givenName.length -2)
 			const hashedPassword=await bcrypt.hash(pass,10)
 			const createdUser=new User({
@@ -30,10 +29,8 @@ passport.use(new GoogleStrategy({
 			await createdUser.save()
 		}
 		let existingUser = await User.findOne({ email: profile.emails[0].value });
-		const secureInfo=sanitize(existingUser)
-		const token=generateToken(secureInfo)
-		console.log("secureInfo : ",secureInfo,token)
-		return done(null, {"token" : token,"firstName" : existingUser.firstname,"profileImage" : existingUser.profileImage});
+		const token = jwt.sign({id : existingUser._id},process.env.JWT_SECRET_KEY)
+		return done(null, {"token" : token});
 	} catch (err) {
 		console.log("err" , err)
 		// done(err, null);

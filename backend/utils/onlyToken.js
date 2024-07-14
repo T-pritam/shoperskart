@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 function onlytoken(data){
-    const a = jwt.verify(data,"87bcyr91283r9b48cb3249pncur34r")
+    const a = jwt.verify(data,process.env.JWT_SECRET_KEY)
     return a._id
 }
 

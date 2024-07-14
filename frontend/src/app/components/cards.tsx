@@ -64,8 +64,6 @@ const addtowish = async(index : any,id:any) => {
     setToggleStates(updatedStatus);
     console.error('Failed to update wishlist', err);
   }
-
-  
 }
 
 
