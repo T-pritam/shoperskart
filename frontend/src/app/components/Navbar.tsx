@@ -28,7 +28,7 @@ function NavScrollExample(props:any) {
         const a = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}user/get/all/${token}`)
         console.log(a.data)
         cookie.set("access_token",a.data.token)
-        cookie.set("name",a.data.secureInfo.name)
+        cookie.set("name",a.data.secureInfo.name.split(" ")[0])
         cookie.set("profileImage",a.data.secureInfo.profileImage)
         if (cookie.get("access_token") && cookie.get("name")) {
           setAuth(true)

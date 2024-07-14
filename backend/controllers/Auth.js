@@ -53,7 +53,12 @@ exports.login=async(req,res)=>{
         const existingUser=await User.findOne({email:req.body.email})
 
         // if exists and password matches the hash
+        if(existingUser && existingUser.isVerified == false){
+            return res.status(400).json({"message":"User already exists but Email not verified"})
+        }
+
         if(existingUser && (await bcrypt.compare(req.body.password,existingUser.password))){
+            
 
             // getting secure user info
             const secureInfo=sanitize(existingUser)

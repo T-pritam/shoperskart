@@ -37,6 +37,7 @@ export default function HandleOtp(){
             if(cookie.get("id") != undefined){
                 axios.defaults.headers.common['id'] = cookie.get('id');
                 await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"auth/resend-otp") 
+                toast.success("Email sent for verification")
             }
             else{
                 router.push('/signin')
