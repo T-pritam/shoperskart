@@ -1,6 +1,8 @@
+
 import { useRouter } from "next/navigation"
 
 export default function Searchcard (props:any){
+  
   const router = useRouter()
     return <>
         <div className="card" style={{cursor:"pointer" }} onClick={ () => {

@@ -1,7 +1,7 @@
 "use client"
 import styled from '@emotion/styled';
-import NavScrollExample from '../components/Navbar';
-import '../../../static/css/skeleton.css'
+import NavScrollExample from '../Navbar';
+import '../../../../static/css/skeleton.css'
 
 const SkeletonItem = styled.div`
     background-color: #e0e0e0;
@@ -78,7 +78,7 @@ const renderProdmob = () => {
                 <SkeletonItem style={{margin:"3px 0 0 1px",width:"80px",height:"2vh"}}/>
                 <SkeletonItem style={{display:"inline-block",margin : "3px 0 0 0",width:"15vw",height:"3.5vh"}}/>
                 <SkeletonItem style={{display:"inline-block",margin:"3px 0 0 3vw",width:"10vw",height:"3.5vh"}}/>
-                <SkeletonItem style={{margin:"3px 0 0 0px",width:"20vw",height:"3vh"}}/>
+                <SkeletonItem style={{margin:"0 0 0 0px",width:"20vw",height:"3vh"}}/>
                 <SkeletonItem style={{margin:"3px 0 0 0px",width:"30vw",height:"3vh"}}/>
                      
             </div>

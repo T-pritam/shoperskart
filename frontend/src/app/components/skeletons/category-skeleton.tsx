@@ -1,7 +1,7 @@
 "use client"
 import styled from '@emotion/styled';
-import NavScrollExample from '../components/Navbar';
-import '../../../static/css/skeleton.css'
+import NavScrollExample from '../Navbar';
+import '../../../../static/css/skeleton.css'
 
 const SkeletonItem = styled.div`
     background-color: #e0e0e0;
@@ -78,7 +78,7 @@ const renderProdmob = () => {
                 <SkeletonItem style={{margin:"3px 0 0 1px",width:"80px",height:"2vh"}}/>
                 <SkeletonItem style={{display:"inline-block",margin : "3px 0 0 0",width:"15vw",height:"3.5vh"}}/>
                 <SkeletonItem style={{display:"inline-block",margin:"3px 0 0 3vw",width:"10vw",height:"3.5vh"}}/>
-                <SkeletonItem style={{margin:"3px 0 0 0px",width:"20vw",height:"3vh"}}/>
+                <SkeletonItem style={{margin:"0 0 0 0px",width:"20vw",height:"3vh"}}/>
                 <SkeletonItem style={{margin:"3px 0 0 0px",width:"30vw",height:"3vh"}}/>
                      
             </div>
@@ -92,8 +92,7 @@ const Skeleton = () => (
     <div>
     <div className='homeSkeleton_optiona'>
     <NavScrollExample />
-      <div  style={{margin:"50px 1vw 1vw 1vw"}}>
-      <h1>Categories</h1>    
+
         <div className="optiona" style={{width:"1250px",height:"23vh",overflow:"hidden",padding:"10px 0 0 0"}}>
         {
             renderSkeletons()
@@ -105,13 +104,10 @@ const Skeleton = () => (
             renderProd()
         }
         </div>    
-    </div>
                     </div>
 
         <div className='homeSkeleton_optionb'>
-            <NavScrollExample />
-        <div  style={{margin:"50px 1vw 1vw 1vw"}}>
-        <h1>Categories</h1>    
+
             
             <SkeletonItem style={{margin:"5px 0 0 1px",width:"100vw",height:"17vh"}}/>
             
@@ -122,7 +118,6 @@ const Skeleton = () => (
             </div>    
             </div>
         </div>
-    </div>
 );
 
 export default Skeleton;

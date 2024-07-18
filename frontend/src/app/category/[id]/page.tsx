@@ -5,7 +5,8 @@ import axios from "axios"
 import BasicExample from "../../components/cards"
 import '../../../../static/css/home.css'
 import NavScrollExample from "@/app/components/Navbar"
-import { DiBackbone, DiVim } from "react-icons/di"
+import Skeleton from "../../components/skeletons/category-skeleton"
+import { DiVim } from "react-icons/di"
 
 export default function Categories({params} : {
     params :{
@@ -13,6 +14,7 @@ export default function Categories({params} : {
     }
 }){
     const router = useRouter()
+    const [isLoading,setIsLoading] = useState(true)
     const [categories,setCategories] = useState<unknown[]>([])
     const [product,setProduct] = useState<unknown[]>([])
     const [catId,setCatId] = useState("")
@@ -20,7 +22,10 @@ export default function Categories({params} : {
     useEffect(() => {
         const sendotp = async() => {
                 const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"products/getall?category="+params.id)
-                setProduct(a.data)                
+                setProduct(a.data) 
+                setTimeout(() => {
+                  setIsLoading(false)  
+                }, 1000);             
         }
         sendotp()
     },[])
@@ -35,9 +40,6 @@ export default function Categories({params} : {
 
         getCategories()
     },[])
-
-
-
 
        useEffect(() => {
         const carouselWrapper = document.querySelector('.carousel-wrapper') as HTMLInputElement;
@@ -77,11 +79,20 @@ export default function Categories({params} : {
 
     return <div><NavScrollExample />
         <div style={{margin:"50px 1vw 1vw 1vw"}}>
-        
         <h1>Categories</h1>
         <h4 onClick={async () => {
             router.push("/")
         }}>All</h4>
+
+       {
+        isLoading ? (
+            <div>
+              <Skeleton />
+            </div>  
+        ):
+          (
+            <div>
+        
         <div className="optiona" style={{width:"100%",height:"23vh",overflow:"hidden"}}>
         {
             
@@ -129,5 +140,9 @@ export default function Categories({params} : {
 
     <BasicExample product = {product} />
     </div>
+
+          )
+       }
+      </div>
     </div>
 }

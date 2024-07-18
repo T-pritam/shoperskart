@@ -1,0 +1,19 @@
+.homeSkeleton_optiona{
+    display: block;
+}
+
+.homeSkeleton_optionb{
+    display: none;
+}
+
+@media (max-width: 500px){
+    .homeSkeleton_optiona{
+        display: None;
+    }
+    
+    .homeSkeleton_optionb{
+        display: block;
+    }
+
+
+}

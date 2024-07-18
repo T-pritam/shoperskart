@@ -11,13 +11,15 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import Searchcard from "../components/searchCards";
 import { MdLogout } from "react-icons/md";
 import { FaRegUserCircle } from "react-icons/fa";
-import { toast } from 'sonner'
+import Skeleton from "./skeletons/search-skeleton";
+
 
 import './a.css'
 
 function NavScrollExample(props:any) {
     const cookie = new Cookies()
     const router = useRouter()
+    const [isLoading,setIsLoading] = useState(true)
     const [user, setUser] = useState("")
     const [auth, setAuth] = useState(false)
     const [profileImge,setProfileImage] = useState("")
@@ -88,6 +90,7 @@ function NavScrollExample(props:any) {
                   search: e.target.value
                 })
                 setSeachProd(data.data)
+
               }
               catch (error) {
                 console.log(error)
@@ -175,9 +178,12 @@ function NavScrollExample(props:any) {
 <div className="searchResult aaa">
       {
 
-        searchprod != null ? (searchprod.map((prod:any) => (
+        searchprod != null ? (isLoading) ?    (<Skeleton />) : (searchprod.map((prod:any) => (
           <Searchcard key={prod._id} product={prod} />
-        ))) : (<> </>)
+        ))):(<></>)
+        // searchprod != null ? (searchprod.map((prod:any) => (
+        //   <Searchcard key={prod._id} product={prod} />
+        // ))) : (<> </>)
       }
     </div>
     </div>

@@ -5,10 +5,12 @@ import axios from "axios"
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import BasicExample from "./cards"
+import Skeleton from "../components/skeletons/home-skeleton";
 import '../../../static/css/home.css'
 
 export default function Categories(){
     const router = useRouter()
+    const [isLoading,setIsLoading] = useState(true)
     const [categories,setCategories] = useState<unknown[]>([])
     const [product,setProduct] = useState<unknown[]>([])
     const [catId,setCatId] = useState("")
@@ -19,10 +21,11 @@ export default function Categories(){
     useEffect(() => {
         const sendotp = async() => {
                 const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+`products/getall?limit=20&page=${(page + 5) % 9}`)
-                setProduct(a.data)                
+                setProduct(a.data)     
+                setIsLoading(false)                  
         }
         sendotp()
-    },[page])
+    },[])
 
 
     useEffect(() => {
@@ -75,13 +78,18 @@ export default function Categories(){
        })
 
 
-    return <div style={{margin:"50px 1vw 1vw 1vw"}}>
+    return <div>
+        {
+          isLoading ? (
+            <Skeleton />
+          ) : (
+            <div  style={{margin:"50px 1vw 1vw 1vw"}}>
         <h1>Categories</h1>
-        <div className="optiona" style={{width:"100%",height:"23vh",overflow:"hidden"}}>
+        <div className="optiona" style={{width:"1250px",height:"23vh",overflow:"hidden"}}>
         {
             
             categories.map((prod:any) => (
-                <div key={prod._id} style={{display:"inline-block",overflowX:"hidden" ,margin:"0 10px 0 0",textAlign:"center"}}>
+                <div key={prod._id} style={{display:"inline-block",overflowX:"hidden" ,margin:"0 12px 0 0",textAlign:"center"}}>
 
                 <div style={{display:"inline-block"}}>
                 <img src={prod.img} onClick={async () => {
@@ -105,8 +113,6 @@ export default function Categories(){
                     categories.map((prod:any) => (
                         <div key={prod._id}>
                             <div className="carousel-slide"><img src={prod.img} style={{width:"29vw",height:"30vw"}} onClick={async () => {
-                            // const a = await axios.get(process.env.NEXT_PUBLIC_BASE_URL+"products/getall?category="+prod._id)
-                            // setProduct(a.data) 
                             router.push("/category/"+prod._id) 
                         }}/>
                         
@@ -183,6 +189,9 @@ export default function Categories(){
 
 </div>
 </div>
+            </div>
+          )
+        }
     
     </div>
 }
