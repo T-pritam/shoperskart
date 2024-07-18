@@ -1,0 +1,33 @@
+.homeSkeletonSearch_optiona{
+    display: block;
+}
+
+.homeSkeletonSearch_optionb{
+    display: none;
+}
+
+.skeleton-searchResult{
+    background-color: white;
+    max-height: 30vw;
+    width: 35vw;
+    z-index: 10;
+    position: fixed;
+    left: 30vw;
+    border: 1px;
+    overflow: hidden;
+  }
+
+@media (max-width: 500px){
+    .homeSkeletonSearch_optiona{
+        display: None;
+    }
+    
+    .homeSkeletonSearch_optionb{
+        display: block;
+    }
+    .skeleton-searchResult{
+        width: 90vw;
+        left: 1px;
+        z-index: 10;
+      }
+}

@@ -1,19 +1,17 @@
-.homeSkeleton_optiona{
+.homeSkeletonSearch_optiona{
     display: block;
 }
 
-.homeSkeleton_optionb{
+.homeSkeletonSearch_optionb{
     display: none;
 }
 
 @media (max-width: 500px){
-    .homeSkeleton_optiona{
+    .homeSkeletonSearch_optiona{
         display: None;
     }
     
-    .homeSkeleton_optionb{
+    .homeSkeletonSearch_optionb{
         display: block;
     }
-
-
 }

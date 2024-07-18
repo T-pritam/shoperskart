@@ -19,7 +19,7 @@ import './a.css'
 function NavScrollExample(props:any) {
     const cookie = new Cookies()
     const router = useRouter()
-    const [isLoading,setIsLoading] = useState(true)
+    const [isLoading,setIsLoading] = useState(false)
     const [user, setUser] = useState("")
     const [auth, setAuth] = useState(false)
     const [profileImge,setProfileImage] = useState("")
@@ -81,8 +81,10 @@ function NavScrollExample(props:any) {
 
 
   <input className="form-controll me-2 search-barr aaa" type="search" onChange={async (e) => {
+              setIsLoading(true)
               if(e.target.value == ""){
                 setSeachProd([])
+                setIsLoading(false)
               }
               else{  
               try {
@@ -90,6 +92,9 @@ function NavScrollExample(props:any) {
                   search: e.target.value
                 })
                 setSeachProd(data.data)
+                setTimeout(() => {
+                  setIsLoading(false)
+                }, 1000);
 
               }
               catch (error) {
