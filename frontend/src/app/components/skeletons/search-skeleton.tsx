@@ -44,7 +44,7 @@ const renderSkeletons = () => {
 
 const renderSkeletonsmob = () => {
     const skeletons = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
         skeletons.push(
             <div key={i} style={{border : "0.5px solid rgba(0, 0, 0, 0.176)",borderRadius:"6px",padding:"5px 0 5px 0"}}>
                 <SkeletonItem style={{display:"inline-block",margin:"0 0 0 2vw ",width:"10vw",height:"7vh"}}/>
