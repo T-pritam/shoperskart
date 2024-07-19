@@ -28,7 +28,7 @@
     .skeleton-searchResult{
         max-height: 40vh;
         width: 90vw;
-        left: 1px;
+        left: 3vw;
         z-index: 10;
       }
 }
