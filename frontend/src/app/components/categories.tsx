@@ -25,7 +25,7 @@ export default function Categories(){
                 setIsLoading(false)                  
         }
         sendotp()
-    },[])
+    },[page])
 
 
     useEffect(() => {
